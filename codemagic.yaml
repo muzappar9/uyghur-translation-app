@@ -5,7 +5,6 @@ workflows:
     environment:
       java: default
       ndk: r21e
-      android_sdk_version: android-36
       flutter: stable
     scripts:
       - name: Get Flutter dependencies
@@ -17,7 +16,7 @@ workflows:
     publishing:
       email:
         recipients:
-          2287931042@qq.com  # 改成你的邮箱
+         - 2287931042@qq.com  # 改成你的邮箱
      
 
  
