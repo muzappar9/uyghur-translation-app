@@ -1,0 +1,43 @@
+<!-- OcrResultScreen: OCR结果界面 -->
+<view class="ocr-container {{isRtl ? 'rtl' : ''}}">
+  <view class="gradient-bg"></view>
+  
+  <!-- AppBar -->
+  <view class="app-bar glass-bar">
+    <view class="back-btn" bindtap="onBack">
+      <text class="back-icon">←</text>
+    </view>
+    <text class="app-title">{{title}}</text>
+    <view class="placeholder"></view>
+  </view>
+
+  <!-- 图片预览占位 -->
+  <view class="image-preview glass-card">
+    <view class="image-placeholder">
+      <text class="placeholder-icon">🖼️</text>
+      <text class="placeholder-text">OCR Image</text>
+    </view>
+  </view>
+
+  <!-- 可编辑文本区域 -->
+  <view class="text-area glass-card">
+    <textarea 
+      class="ocr-text-input"
+      value="{{ocrText}}"
+      placeholder="TODO: OCR识别文本"
+      bindinput="onTextChange"
+    ></textarea>
+  </view>
+
+  <!-- 底部按钮 -->
+  <view class="bottom-actions">
+    <view class="action-btn glass-btn" bindtap="onEdit">
+      <text class="btn-icon">✏️</text>
+      <text class="btn-text">{{editButtonText}}</text>
+    </view>
+    <view class="action-btn glass-btn primary" bindtap="onTranslate">
+      <text class="btn-icon">📝</text>
+      <text class="btn-text">{{translateButtonText}}</text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,45 @@
+<!-- HistoryScreen: 历史记录 -->
+<view class="history-container {{isRtl ? 'rtl' : ''}}">
+  <view class="gradient-bg"></view>
+  
+  <!-- AppBar -->
+  <view class="app-bar glass-bar">
+    <view class="back-btn" bindtap="onBack">
+      <text class="back-icon">←</text>
+    </view>
+    <text class="app-title">{{title}}</text>
+    <view class="placeholder"></view>
+  </view>
+
+  <!-- 搜索框 -->
+  <view class="search-bar glass-card">
+    <text class="search-icon">🔍</text>
+    <input 
+      class="search-input"
+      placeholder="{{searchPlaceholder}}"
+      bindinput="onSearch"
+    />
+  </view>
+
+  <!-- 历史列表 -->
+  <scroll-view scroll-y class="history-list">
+    <!-- TODO: 历史记录列表 -->
+    <view class="history-item glass-card" bindtap="onItemTap">
+      <view class="item-content">
+        <text class="item-original">TODO: 原文预览</text>
+        <text class="item-translated">TODO: 译文预览</text>
+      </view>
+      <view class="item-actions">
+        <view class="action-icon" catchtap="onFavorite">⭐</view>
+        <view class="action-icon" catchtap="onSpeak">🔊</view>
+        <view class="action-icon" catchtap="onCopy">📋</view>
+      </view>
+    </view>
+
+    <!-- 空状态占位 -->
+    <view wx:if="{{historyList.length === 0}}" class="empty-state">
+      <text class="empty-icon">📝</text>
+      <text class="empty-text">{{t('history.empty')}}</text>
+    </view>
+  </scroll-view>
+</view>

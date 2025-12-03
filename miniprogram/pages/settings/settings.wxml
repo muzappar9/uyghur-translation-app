@@ -1,0 +1,114 @@
+<!-- SettingsScreen: 设置界面 -->
+<view class="settings-container {{isRtl ? 'rtl' : ''}}">
+  <view class="gradient-bg"></view>
+  
+  <!-- AppBar -->
+  <view class="app-bar glass-bar">
+    <view class="back-btn" bindtap="onBack">
+      <text class="back-icon">←</text>
+    </view>
+    <text class="app-title">{{title}}</text>
+    <view class="placeholder"></view>
+  </view>
+
+  <scroll-view scroll-y class="settings-scroll">
+    <!-- 语言设置 -->
+    <view class="section glass-card">
+      <text class="section-title">{{sections.language}}</text>
+      <view class="radio-group">
+        <view 
+          class="radio-item {{currentLanguage === 'zh' ? 'active' : ''}}"
+          data-lang="zh"
+          bindtap="onLanguageChange"
+        >
+          <view class="radio-circle">
+            <view wx:if="{{currentLanguage === 'zh'}}" class="radio-dot"></view>
+          </view>
+          <text class="radio-label">中文</text>
+        </view>
+        <view 
+          class="radio-item {{currentLanguage === 'ug' ? 'active' : ''}}"
+          data-lang="ug"
+          bindtap="onLanguageChange"
+        >
+          <view class="radio-circle">
+            <view wx:if="{{currentLanguage === 'ug'}}" class="radio-dot"></view>
+          </view>
+          <text class="radio-label">ئۇيغۇرچە</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 字体设置 -->
+    <view class="section glass-card">
+      <text class="section-title">{{sections.font}}</text>
+      <view class="radio-group">
+        <view 
+          class="radio-item {{currentFont === 0 ? 'active' : ''}}"
+          data-index="0"
+          bindtap="onFontChange"
+        >
+          <view class="radio-circle">
+            <view wx:if="{{currentFont === 0}}" class="radio-dot"></view>
+          </view>
+          <text class="radio-label">{{t('settings.font.small')}}</text>
+        </view>
+        <view 
+          class="radio-item {{currentFont === 1 ? 'active' : ''}}"
+          data-index="1"
+          bindtap="onFontChange"
+        >
+          <view class="radio-circle">
+            <view wx:if="{{currentFont === 1}}" class="radio-dot"></view>
+          </view>
+          <text class="radio-label">{{t('settings.font.medium')}}</text>
+        </view>
+        <view 
+          class="radio-item {{currentFont === 2 ? 'active' : ''}}"
+          data-index="2"
+          bindtap="onFontChange"
+        >
+          <view class="radio-circle">
+            <view wx:if="{{currentFont === 2}}" class="radio-dot"></view>
+          </view>
+          <text class="radio-label">{{t('settings.font.large')}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 外观设置 -->
+    <view class="section glass-card">
+      <text class="section-title">{{sections.theme}}</text>
+      <view class="switch-row">
+        <text class="switch-label">{{t('settings.theme.dark')}}</text>
+        <switch 
+          checked="{{isDarkMode}}"
+          bindchange="onDarkModeToggle"
+          color="#FF6B6B"
+        />
+      </view>
+    </view>
+
+    <!-- 隐私设置 -->
+    <view class="section glass-card">
+      <text class="section-title">{{sections.privacy}}</text>
+      <view class="menu-item" bindtap="onPrivacyTap">
+        <text class="menu-label">{{t('settings.privacy.policy')}}</text>
+        <text class="menu-arrow">→</text>
+      </view>
+    </view>
+
+    <!-- 关于 -->
+    <view class="section glass-card">
+      <text class="section-title">{{sections.about}}</text>
+      <view class="menu-item" bindtap="onOpenSourceTap">
+        <text class="menu-label">{{t('settings.about.opensource')}}</text>
+        <text class="menu-arrow">→</text>
+      </view>
+      <view class="menu-item" bindtap="onVersionTap">
+        <text class="menu-label">{{t('settings.about.version')}}</text>
+        <text class="menu-value">1.0.0</text>
+      </view>
+    </view>
+  </scroll-view>
+</view>

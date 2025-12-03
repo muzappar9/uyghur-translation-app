@@ -1,0 +1,48 @@
+<!-- DictionaryHomeScreen: 词典首页 -->
+<view class="dict-container {{isRtl ? 'rtl' : ''}}">
+  <view class="gradient-bg"></view>
+  
+  <!-- AppBar -->
+  <view class="app-bar glass-bar">
+    <view class="back-btn" bindtap="onBack">
+      <text class="back-icon">←</text>
+    </view>
+    <text class="app-title">{{title}}</text>
+    <view class="placeholder"></view>
+  </view>
+
+  <!-- 搜索框 -->
+  <view class="search-bar glass-card">
+    <text class="search-icon">🔍</text>
+    <input 
+      class="search-input"
+      placeholder="{{searchPlaceholder}}"
+      bindinput="onSearch"
+    />
+  </view>
+
+  <scroll-view scroll-y class="content-scroll">
+    <!-- 推荐词Section -->
+    <view class="section">
+      <text class="section-title">{{recommendSection}}</text>
+      <view class="chips-container">
+        <!-- TODO: 推荐词Chip列表 -->
+        <view class="chip glass-chip" bindtap="onChipTap">TODO</view>
+        <view class="chip glass-chip" bindtap="onChipTap">TODO</view>
+        <view class="chip glass-chip" bindtap="onChipTap">TODO</view>
+      </view>
+    </view>
+
+    <!-- 分类Section -->
+    <view class="section">
+      <text class="section-title">{{categorySection}}</text>
+      <view class="chips-container">
+        <!-- TODO: 分类Chip列表 -->
+        <view class="chip glass-chip" bindtap="onChipTap">TODO</view>
+        <view class="chip glass-chip" bindtap="onChipTap">TODO</view>
+        <view class="chip glass-chip" bindtap="onChipTap">TODO</view>
+        <view class="chip glass-chip" bindtap="onChipTap">TODO</view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

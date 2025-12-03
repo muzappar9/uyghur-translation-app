@@ -1,0 +1,54 @@
+<!-- TranslateResultScreen: 翻译结果展示 -->
+<view class="result-container {{isRtl ? 'rtl' : ''}}">
+  <view class="gradient-bg"></view>
+  
+  <!-- AppBar -->
+  <view class="app-bar glass-bar">
+    <view class="back-btn" bindtap="onNewTranslate">
+      <text class="back-icon">←</text>
+    </view>
+    <text class="app-title">{{title}}</text>
+    <view class="placeholder"></view>
+  </view>
+
+  <scroll-view scroll-y class="content-scroll">
+    <!-- 源文本卡片 -->
+    <view class="result-card glass-card source-card">
+      <view class="card-header">
+        <text class="card-title">{{sourceTitle}}</text>
+        <view class="card-actions">
+          <view class="action-icon" bindtap="onSpeak" data-type="source">🔊</view>
+          <view class="action-icon" bindtap="onCopy" data-type="source">📋</view>
+          <view class="action-icon" bindtap="onFavorite">⭐</view>
+        </view>
+      </view>
+      <text class="card-text">{{sourceText || 'TODO: 源文本'}}</text>
+    </view>
+
+    <!-- 目标文本卡片 -->
+    <view class="result-card glass-card target-card">
+      <view class="card-header">
+        <text class="card-title">{{targetTitle}}</text>
+        <view class="card-actions">
+          <view class="action-icon" bindtap="onSpeak" data-type="target">🔊</view>
+          <view class="action-icon" bindtap="onCopy" data-type="target">📋</view>
+          <view class="action-icon" bindtap="onShare">📤</view>
+        </view>
+      </view>
+      <text class="card-text">{{targetText || 'TODO: 目标文本'}}</text>
+    </view>
+  </scroll-view>
+
+  <!-- 底部按钮 -->
+  <view class="bottom-actions">
+    <view class="bottom-btn glass-btn" bindtap="onNewTranslate">
+      <text>{{t('result.button.new')}}</text>
+    </view>
+    <view class="bottom-btn glass-btn" bindtap="onConversation">
+      <text>{{t('result.button.conversation')}}</text>
+    </view>
+    <view class="bottom-btn glass-btn" bindtap="onDictionary">
+      <text>{{t('result.button.dictionary')}}</text>
+    </view>
+  </view>
+</view>

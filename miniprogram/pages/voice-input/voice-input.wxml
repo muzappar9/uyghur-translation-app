@@ -1,0 +1,36 @@
+<!-- VoiceInputScreen: 语音输入界面 -->
+<view class="voice-container {{isRtl ? 'rtl' : ''}}">
+  <view class="gradient-bg"></view>
+  
+  <!-- AppBar -->
+  <view class="app-bar glass-bar">
+    <view class="back-btn" bindtap="onBack">
+      <text class="back-icon">←</text>
+    </view>
+    <text class="app-title">{{title}}</text>
+    <view class="placeholder"></view>
+  </view>
+
+  <!-- 状态文本 -->
+  <text class="status-text">{{statusText}}</text>
+
+  <!-- 中央麦克风动画 -->
+  <view class="mic-circle-container">
+    <view class="mic-pulse pulse-1"></view>
+    <view class="mic-pulse pulse-2"></view>
+    <view class="mic-pulse pulse-3"></view>
+    <view class="mic-main glass-btn" bindtap="onStartRecording">
+      <text class="mic-icon">🎤</text>
+    </view>
+  </view>
+
+  <!-- 实时识别文本区域 -->
+  <view class="recognized-area glass-card">
+    <text class="recognized-text">{{recognizedText || 'TODO: 实时识别文本'}}</text>
+  </view>
+
+  <!-- 停止按钮 -->
+  <view class="stop-btn glass-btn" bindtap="onStopRecording">
+    <text class="stop-text">{{stopButtonText}}</text>
+  </view>
+</view>

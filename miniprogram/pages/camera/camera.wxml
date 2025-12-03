@@ -1,0 +1,37 @@
+<!-- CameraScreen: 相机界面 -->
+<view class="camera-container {{isRtl ? 'rtl' : ''}}">
+  <view class="gradient-bg"></view>
+  
+  <!-- AppBar -->
+  <view class="app-bar glass-bar">
+    <view class="back-btn" bindtap="onBack">
+      <text class="back-icon">←</text>
+    </view>
+    <text class="app-title">{{title}}</text>
+    <view class="placeholder"></view>
+  </view>
+
+  <!-- 相机预览占位 -->
+  <view class="camera-preview">
+    <view class="preview-placeholder">
+      <view class="dashed-border">
+        <text class="placeholder-icon">📷</text>
+        <text class="placeholder-text">Camera Preview</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部按钮 -->
+  <view class="camera-actions">
+    <view class="action-btn glass-btn" bindtap="onAlbum">
+      <text class="btn-icon">🖼️</text>
+      <text class="btn-text">{{albumText}}</text>
+    </view>
+    <view class="capture-btn glass-btn" bindtap="onCapture">
+      <view class="capture-inner"></view>
+    </view>
+    <view class="action-btn glass-btn placeholder-btn">
+      <text class="btn-icon"></text>
+    </view>
+  </view>
+</view>

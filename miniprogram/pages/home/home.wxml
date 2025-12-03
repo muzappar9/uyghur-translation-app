@@ -1,0 +1,63 @@
+<!-- HomeScreen: 主翻译界面 -->
+<view class="home-container {{isRtl ? 'rtl' : ''}}">
+  <view class="gradient-bg"></view>
+  
+  <!-- AppBar -->
+  <view class="app-bar glass-bar">
+    <text class="app-title">{{title}}</text>
+    <view class="settings-btn" bindtap="onGoSettings">
+      <text class="icon">⚙️</text>
+    </view>
+  </view>
+
+  <!-- LanguageSwitchBar -->
+  <view class="language-switch-bar glass-card">
+    <view class="lang-btn">
+      <text class="lang-text">{{sourceLanguage}}</text>
+    </view>
+    <view class="swap-btn" bindtap="onSwapLanguage">
+      <text class="swap-icon">⇄</text>
+    </view>
+    <view class="lang-btn">
+      <text class="lang-text">{{targetLanguage}}</text>
+    </view>
+  </view>
+
+  <!-- ModeSegmentedControl -->
+  <view class="mode-tabs glass-card">
+    <view 
+      wx:for="{{modes}}" 
+      wx:key="key"
+      class="mode-tab {{currentMode === index ? 'active' : ''}}"
+      data-index="{{index}}"
+      bindtap="onModeChange"
+    >
+      <text>{{item.label}}</text>
+    </view>
+  </view>
+
+  <!-- 输入区域 -->
+  <view class="input-area glass-card">
+    <textarea 
+      class="input-field"
+      placeholder="{{inputPlaceholder}}"
+      value="{{inputText}}"
+      bindinput="onInputChange"
+      maxlength="-1"
+    ></textarea>
+  </view>
+
+  <!-- 底部操作按钮 -->
+  <view class="action-bar">
+    <view class="action-btn glass-btn" bindtap="onTranslate">
+      <text class="btn-icon">📝</text>
+      <text class="btn-text">{{t('home.button.translate')}}</text>
+    </view>
+    <view class="action-btn glass-btn mic-btn" bindtap="onVoiceInput">
+      <text class="btn-icon">🎤</text>
+    </view>
+    <view class="action-btn glass-btn" bindtap="onCameraInput">
+      <text class="btn-icon">📷</text>
+    </view>
+  </view>
+</view>

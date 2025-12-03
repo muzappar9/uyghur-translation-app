@@ -1,0 +1,41 @@
+<!-- LanguageSwitcherPage: 语言切换界面 -->
+<view class="lang-container {{isRtl ? 'rtl' : ''}}">
+  <view class="gradient-bg"></view>
+  
+  <!-- AppBar -->
+  <view class="app-bar glass-bar">
+    <view class="back-btn" bindtap="onBack">
+      <text class="back-icon">←</text>
+    </view>
+    <text class="app-title">{{title}}</text>
+    <view class="placeholder"></view>
+  </view>
+
+  <!-- 语言选择 -->
+  <view class="lang-options">
+    <view 
+      class="lang-option glass-card {{currentLanguage === 'zh' ? 'active' : ''}}"
+      data-lang="zh"
+      bindtap="onLanguageSelect"
+    >
+      <text class="lang-name">中文</text>
+      <text class="lang-native">Chinese</text>
+      <view wx:if="{{currentLanguage === 'zh'}}" class="check-icon">✓</view>
+    </view>
+
+    <view 
+      class="lang-option glass-card {{currentLanguage === 'ug' ? 'active' : ''}}"
+      data-lang="ug"
+      bindtap="onLanguageSelect"
+    >
+      <text class="lang-name">ئۇيغۇرچە</text>
+      <text class="lang-native">Uyghur</text>
+      <view wx:if="{{currentLanguage === 'ug'}}" class="check-icon">✓</view>
+    </view>
+  </view>
+
+  <!-- 应用按钮 -->
+  <view class="apply-btn glass-btn" bindtap="onApply">
+    <text class="apply-text">{{t('language.button.apply')}}</text>
+  </view>
+</view>

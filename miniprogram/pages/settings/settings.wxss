@@ -1,0 +1,173 @@
+/* SettingsScreen样式 */
+.settings-container {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.settings-container.rtl {
+  direction: rtl;
+}
+
+.gradient-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, #FF6B6B 0%, #FF8E53 100%);
+  z-index: -1;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 48rpx;
+  border: 1rpx solid rgba(255, 255, 255, 0.3);
+}
+
+.glass-bar {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* AppBar */
+.app-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24rpx 32rpx;
+  margin: 88rpx 32rpx 0;
+  border-radius: 32rpx;
+}
+
+.back-btn {
+  width: 72rpx;
+  height: 72rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-icon {
+  font-size: 36rpx;
+  color: #FFFFFF;
+}
+
+.app-title {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+.placeholder {
+  width: 72rpx;
+}
+
+/* Settings Scroll */
+.settings-scroll {
+  flex: 1;
+  padding: 24rpx 32rpx;
+}
+
+.section {
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+}
+
+.section-title {
+  font-size: 26rpx;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 500;
+  margin-bottom: 20rpx;
+  display: block;
+}
+
+/* Radio Group */
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.radio-item {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  padding: 12rpx 0;
+}
+
+.radio-circle {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  border: 3rpx solid rgba(255, 255, 255, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.radio-item.active .radio-circle {
+  border-color: #FFFFFF;
+}
+
+.radio-dot {
+  width: 20rpx;
+  height: 20rpx;
+  border-radius: 50%;
+  background: #FFFFFF;
+}
+
+.radio-label {
+  font-size: 30rpx;
+  color: #FFFFFF;
+}
+
+/* Switch Row */
+.switch-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12rpx 0;
+}
+
+.switch-label {
+  font-size: 30rpx;
+  color: #FFFFFF;
+}
+
+/* Menu Item */
+.menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16rpx 0;
+  border-bottom: 1rpx solid rgba(255, 255, 255, 0.1);
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.menu-label {
+  font-size: 30rpx;
+  color: #FFFFFF;
+}
+
+.menu-arrow {
+  font-size: 28rpx;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.rtl .menu-arrow {
+  transform: scaleX(-1);
+}
+
+.menu-value {
+  font-size: 28rpx;
+  color: rgba(255, 255, 255, 0.6);
+}

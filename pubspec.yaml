@@ -1,0 +1,36 @@
+name: uyghur_translator
+description: 公益维吾尔语翻译App - iOS 17/18 Glass风格 + RTL支持
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.20.2  # 国际化支持，与 flutter_localizations 兼容
+  cupertino_icons: ^1.0.6
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+  
+  fonts:
+    # 维吾尔语字体占位 - 需替换为实际字体文件
+    - family: NotoSansArabicUyghur
+      fonts:
+        - asset: assets/fonts/NotoSansArabic-Regular.ttf
+        - asset: assets/fonts/NotoSansArabic-Bold.ttf
+          weight: 700
+
+  assets:
+    - assets/images/
+    - assets/icons/
+

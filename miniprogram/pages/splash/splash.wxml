@@ -1,0 +1,19 @@
+<!-- SplashScreen: 渐变背景 + Logo占位 + 加载文本 -->
+<view class="splash-container {{isRtl ? 'rtl' : ''}}">
+  <view class="gradient-bg"></view>
+  
+  <!-- Logo占位 -->
+  <view class="logo-placeholder">
+    <text class="logo-icon">🌐</text>
+  </view>
+  
+  <!-- 加载文本 -->
+  <text class="loading-text">{{loadingText}}</text>
+  
+  <!-- 加载指示器 -->
+  <view class="loading-dots">
+    <view class="dot dot-1"></view>
+    <view class="dot dot-2"></view>
+    <view class="dot dot-3"></view>
+  </view>
+</view>

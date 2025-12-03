@@ -1,0 +1,104 @@
+/**
+ * 全局样式
+ * RTL支持 + iOS 17/18 Glass风格
+ */
+
+/* RTL方向类 */
+.rtl {
+  direction: rtl;
+  text-align: right;
+}
+
+.ltr {
+  direction: ltr;
+  text-align: left;
+}
+
+/* Coral渐变背景 */
+.gradient-bg {
+  background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 50%, #FFA07A 100%);
+}
+
+/* Glass Card基础样式 */
+.glass-card {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 48rpx;
+  border: 1rpx solid rgba(255, 255, 255, 0.3);
+  padding: 32rpx;
+}
+
+.glass-card-dark {
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 48rpx;
+  border: 1rpx solid rgba(255, 255, 255, 0.1);
+  padding: 32rpx;
+}
+
+/* Glass Button */
+.glass-button {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 32rpx;
+  border: 1rpx solid rgba(255, 255, 255, 0.5);
+  padding: 28rpx 40rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+  font-weight: 600;
+  font-size: 32rpx;
+}
+
+.glass-button-white {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.3);
+  border: 1rpx solid rgba(255, 255, 255, 0.4);
+}
+
+/* 文本样式 */
+.text-white {
+  color: #fff;
+}
+
+.text-white-70 {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.text-white-50 {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* 字体 - 维吾尔语RTL */
+.font-uyghur {
+  font-family: 'Noto Sans Arabic Uyghur', 'Noto Naskh Arabic', sans-serif;
+}
+
+/* 间距工具类 */
+.p-16 { padding: 32rpx; }
+.p-24 { padding: 48rpx; }
+.m-16 { margin: 32rpx; }
+.mx-16 { margin-left: 32rpx; margin-right: 32rpx; }
+.my-16 { margin-top: 32rpx; margin-bottom: 32rpx; }
+
+/* Flex布局 */
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.flex-row { flex-direction: row; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.flex-1 { flex: 1; }
+
+/* 安全区域 */
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.safe-area-top {
+  padding-top: env(safe-area-inset-top);
+}

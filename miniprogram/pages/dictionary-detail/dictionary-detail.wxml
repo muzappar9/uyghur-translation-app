@@ -1,0 +1,73 @@
+<!-- DictionaryDetailScreen: 词典详情 -->
+<view class="detail-container {{isRtl ? 'rtl' : ''}}">
+  <view class="gradient-bg"></view>
+  
+  <!-- AppBar -->
+  <view class="app-bar glass-bar">
+    <view class="back-btn" bindtap="onBack">
+      <text class="back-icon">←</text>
+    </view>
+    <text class="app-title">{{title}}</text>
+    <view class="placeholder"></view>
+  </view>
+
+  <scroll-view scroll-y class="content-scroll">
+    <!-- 词头区域 -->
+    <view class="word-header glass-card">
+      <text class="word-head">{{wordHead || 'TODO: 词头'}}</text>
+      <view class="word-actions">
+        <view class="action-icon" bindtap="onSpeak">🔊</view>
+        <view class="action-icon" bindtap="onFavorite">⭐</view>
+        <view class="action-icon" bindtap="onCopy">📋</view>
+      </view>
+    </view>
+
+    <!-- 基本释义 -->
+    <view class="section-card glass-card">
+      <text class="section-title">{{sections.basic}}</text>
+      <text class="section-content">TODO: 基本释义文本</text>
+    </view>
+
+    <!-- 多义词 -->
+    <view class="section-card glass-card">
+      <text class="section-title">{{sections.sense}}</text>
+      <view class="sense-list">
+        <text class="sense-item">1. TODO: 义项一</text>
+        <text class="sense-item">2. TODO: 义项二</text>
+      </view>
+    </view>
+
+    <!-- 专业释义 -->
+    <view class="section-card glass-card">
+      <text class="section-title">{{sections.professional}}</text>
+      <text class="section-content">TODO: 专业释义文本</text>
+    </view>
+
+    <!-- 例句 -->
+    <view class="section-card glass-card">
+      <text class="section-title">{{sections.examples}}</text>
+      <view class="example-list">
+        <view class="example-item">
+          <text class="example-original">TODO: 例句原文</text>
+          <text class="example-translated">TODO: 例句译文</text>
+          <view class="example-speak">🔊</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 相关词 -->
+    <view class="section-card glass-card">
+      <text class="section-title">{{sections.related}}</text>
+      <view class="chips-container">
+        <view class="chip glass-chip">TODO</view>
+        <view class="chip glass-chip">TODO</view>
+      </view>
+    </view>
+
+    <!-- 来源 -->
+    <view class="section-card glass-card">
+      <text class="section-title">{{sections.source}}</text>
+      <text class="section-content">TODO: 来源信息</text>
+    </view>
+  </scroll-view>
+</view>

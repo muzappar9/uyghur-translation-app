@@ -1,0 +1,183 @@
+/* ConversationScreen样式 */
+.conversation-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.conversation-container.rtl {
+  direction: rtl;
+}
+
+.gradient-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, #FF6B6B 0%, #FF8E53 100%);
+  z-index: -1;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 48rpx;
+  border: 1rpx solid rgba(255, 255, 255, 0.3);
+}
+
+.glass-bar {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.glass-btn {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 48rpx;
+  border: 1rpx solid rgba(255, 255, 255, 0.3);
+}
+
+/* AppBar */
+.app-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24rpx 32rpx;
+  margin: 88rpx 32rpx 0;
+  border-radius: 32rpx;
+}
+
+.back-btn {
+  width: 72rpx;
+  height: 72rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-icon {
+  font-size: 36rpx;
+  color: #FFFFFF;
+}
+
+.app-title {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+.placeholder {
+  width: 72rpx;
+}
+
+/* Message List */
+.message-list {
+  flex: 1;
+  padding: 24rpx 32rpx;
+}
+
+.chat-bubble {
+  max-width: 80%;
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+  position: relative;
+}
+
+.chat-bubble.left {
+  margin-right: auto;
+  border-bottom-left-radius: 8rpx;
+}
+
+.chat-bubble.right {
+  margin-left: auto;
+  border-bottom-right-radius: 8rpx;
+}
+
+.rtl .chat-bubble.left {
+  margin-left: auto;
+  margin-right: 0;
+  border-bottom-left-radius: 48rpx;
+  border-bottom-right-radius: 8rpx;
+}
+
+.rtl .chat-bubble.right {
+  margin-right: auto;
+  margin-left: 0;
+  border-bottom-right-radius: 48rpx;
+  border-bottom-left-radius: 8rpx;
+}
+
+.bubble-original {
+  display: block;
+  font-size: 30rpx;
+  color: #FFFFFF;
+  margin-bottom: 12rpx;
+}
+
+.bubble-translated {
+  display: block;
+  font-size: 26rpx;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.bubble-action {
+  position: absolute;
+  top: 16rpx;
+  right: 16rpx;
+}
+
+.rtl .bubble-action {
+  right: auto;
+  left: 16rpx;
+}
+
+.speak-icon {
+  font-size: 28rpx;
+  opacity: 0.7;
+}
+
+.empty-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 400rpx;
+}
+
+.empty-text {
+  font-size: 28rpx;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Mic Bar */
+.mic-bar {
+  display: flex;
+  justify-content: space-between;
+  padding: 32rpx;
+  gap: 24rpx;
+}
+
+.mic-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32rpx;
+  gap: 12rpx;
+}
+
+.mic-icon {
+  font-size: 48rpx;
+}
+
+.mic-label {
+  font-size: 24rpx;
+  color: #FFFFFF;
+  font-weight: 500;
+}

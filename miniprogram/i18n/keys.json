@@ -1,0 +1,155 @@
+{
+  "splash": {
+    "loading": ""
+  },
+  "onboarding": {
+    "welcome": "",
+    "feature": {
+      "translate": "",
+      "voice": "",
+      "ocr": ""
+    },
+    "button": {
+      "skip": "",
+      "next": "",
+      "start": ""
+    }
+  },
+  "home": {
+    "title": "",
+    "language": {
+      "source": "",
+      "target": ""
+    },
+    "mode": {
+      "text": "",
+      "voice": "",
+      "camera": "",
+      "document": ""
+    },
+    "input": {
+      "placeholder": ""
+    },
+    "button": {
+      "translate": "",
+      "mic": "",
+      "camera": ""
+    }
+  },
+  "result": {
+    "title": "",
+    "source": {
+      "title": ""
+    },
+    "target": {
+      "title": ""
+    },
+    "button": {
+      "new": "",
+      "conversation": "",
+      "dictionary": ""
+    }
+  },
+  "conversation": {
+    "title": "",
+    "mic": {
+      "left": "",
+      "right": ""
+    },
+    "empty": ""
+  },
+  "voice": {
+    "title": "",
+    "status": {
+      "ready": "",
+      "recording": "",
+      "processing": ""
+    },
+    "button": {
+      "stop": ""
+    }
+  },
+  "camera": {
+    "title": "",
+    "button": {
+      "capture": "",
+      "album": ""
+    }
+  },
+  "ocr_result": {
+    "title": "",
+    "button": {
+      "edit": "",
+      "translate": ""
+    }
+  },
+  "dict": {
+    "title": "",
+    "search": {
+      "placeholder": ""
+    },
+    "section": {
+      "recommend": "",
+      "category": ""
+    }
+  },
+  "dict_detail": {
+    "title": "",
+    "section": {
+      "basic": "",
+      "sense": "",
+      "professional": "",
+      "examples": "",
+      "related": ""
+    },
+    "label": {
+      "source": ""
+    }
+  },
+  "history": {
+    "title": "",
+    "search": {
+      "placeholder": ""
+    },
+    "empty": ""
+  },
+  "settings": {
+    "title": "",
+    "section": {
+      "language": "",
+      "font": "",
+      "theme": "",
+      "privacy": "",
+      "about": ""
+    },
+    "font": {
+      "small": "",
+      "medium": "",
+      "large": ""
+    },
+    "theme": {
+      "dark": ""
+    },
+    "privacy": {
+      "policy": ""
+    },
+    "about": {
+      "opensource": "",
+      "version": ""
+    }
+  },
+  "language": {
+    "title": "",
+    "button": {
+      "apply": ""
+    }
+  },
+  "common": {
+    "button": {
+      "speak": "",
+      "copy": "",
+      "favorite": "",
+      "share": ""
+    }
+  }
+}

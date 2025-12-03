@@ -1,0 +1,14 @@
+{
+  "dart.flutterSdkPath": "D:\\项目\\Development\\Flutter-SDK\\flutter",
+  "dart.sdkPath": "D:\\项目\\Development\\Flutter-SDK\\flutter\\bin\\cache\\dart-sdk",
+  "dart.enableSdkFormatter": true,
+  "[dart]": {
+    "editor.formatOnSave": true,
+    "editor.rulers": [80, 120],
+    "editor.selectionHighlight": false
+  },
+  "extensions.ignoreRecommendations": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit"
+  }
+}

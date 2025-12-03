@@ -1,0 +1,44 @@
+<!-- ConversationScreen: 对话翻译界面 -->
+<view class="conversation-container {{isRtl ? 'rtl' : ''}}">
+  <view class="gradient-bg"></view>
+  
+  <!-- AppBar -->
+  <view class="app-bar glass-bar">
+    <view class="back-btn" bindtap="onBack">
+      <text class="back-icon">←</text>
+    </view>
+    <text class="app-title">{{title}}</text>
+    <view class="placeholder"></view>
+  </view>
+
+  <!-- 消息列表 -->
+  <scroll-view scroll-y class="message-list">
+    <view wx:for="{{messages}}" wx:key="index" class="message-item">
+      <!-- ChatBubble组件 -->
+      <view class="chat-bubble glass-card {{item.isLeft ? 'left' : 'right'}}">
+        <text class="bubble-original">{{item.original || 'TODO: 原文'}}</text>
+        <text class="bubble-translated">{{item.translated || 'TODO: 译文'}}</text>
+        <view class="bubble-action" bindtap="onSpeakMessage" data-index="{{index}}">
+          <text class="speak-icon">🔊</text>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 空状态占位 -->
+    <view wx:if="{{messages.length === 0}}" class="empty-state">
+      <text class="empty-text">{{t('conversation.empty')}}</text>
+    </view>
+  </scroll-view>
+
+  <!-- 底部双麦克风 -->
+  <view class="mic-bar">
+    <view class="mic-btn glass-btn left-mic" bindtap="onMicLeft">
+      <text class="mic-icon">🎤</text>
+      <text class="mic-label">{{micLeftLabel}}</text>
+    </view>
+    <view class="mic-btn glass-btn right-mic" bindtap="onMicRight">
+      <text class="mic-icon">🎤</text>
+      <text class="mic-label">{{micRightLabel}}</text>
+    </view>
+  </view>
+</view>

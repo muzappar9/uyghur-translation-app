@@ -1,0 +1,25 @@
+{
+  "pages": [
+    "pages/splash/splash",
+    "pages/onboarding/onboarding",
+    "pages/home/home",
+    "pages/translate-result/translate-result",
+    "pages/conversation/conversation",
+    "pages/voice-input/voice-input",
+    "pages/camera/camera",
+    "pages/ocr-result/ocr-result",
+    "pages/dictionary-home/dictionary-home",
+    "pages/dictionary-detail/dictionary-detail",
+    "pages/history/history",
+    "pages/settings/settings",
+    "pages/language-switcher/language-switcher"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#FF6B6B",
+    "navigationBarTitleText": "维汉翻译",
+    "navigationBarTextStyle": "white"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

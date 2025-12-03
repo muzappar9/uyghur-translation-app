@@ -1,0 +1,189 @@
+/* DictionaryDetailScreen样式 */
+.detail-container {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.detail-container.rtl {
+  direction: rtl;
+}
+
+.gradient-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, #FF6B6B 0%, #FF8E53 100%);
+  z-index: -1;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 48rpx;
+  border: 1rpx solid rgba(255, 255, 255, 0.3);
+}
+
+.glass-bar {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.glass-chip {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1rpx solid rgba(255, 255, 255, 0.3);
+}
+
+/* AppBar */
+.app-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24rpx 32rpx;
+  margin: 88rpx 32rpx 0;
+  border-radius: 32rpx;
+}
+
+.back-btn {
+  width: 72rpx;
+  height: 72rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-icon {
+  font-size: 36rpx;
+  color: #FFFFFF;
+}
+
+.app-title {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+.placeholder {
+  width: 72rpx;
+}
+
+/* Content */
+.content-scroll {
+  flex: 1;
+  padding: 24rpx 32rpx;
+}
+
+/* Word Header */
+.word-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32rpx;
+  margin-bottom: 20rpx;
+}
+
+.word-head {
+  font-size: 48rpx;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.word-actions {
+  display: flex;
+  gap: 24rpx;
+}
+
+.action-icon {
+  font-size: 36rpx;
+  opacity: 0.8;
+}
+
+/* Section Cards */
+.section-card {
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+}
+
+.section-title {
+  font-size: 26rpx;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 500;
+  margin-bottom: 16rpx;
+  display: block;
+}
+
+.section-content {
+  font-size: 30rpx;
+  color: #FFFFFF;
+  line-height: 1.6;
+}
+
+.sense-list, .example-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.sense-item {
+  font-size: 28rpx;
+  color: #FFFFFF;
+  line-height: 1.5;
+}
+
+.example-item {
+  position: relative;
+  padding-right: 60rpx;
+}
+
+.rtl .example-item {
+  padding-right: 0;
+  padding-left: 60rpx;
+}
+
+.example-original {
+  display: block;
+  font-size: 28rpx;
+  color: #FFFFFF;
+  margin-bottom: 8rpx;
+}
+
+.example-translated {
+  display: block;
+  font-size: 26rpx;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.example-speak {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  font-size: 28rpx;
+  opacity: 0.7;
+}
+
+.rtl .example-speak {
+  right: auto;
+  left: 0;
+}
+
+.chips-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+}
+
+.chip {
+  padding: 12rpx 24rpx;
+  border-radius: 24rpx;
+  font-size: 24rpx;
+  color: #FFFFFF;
+}
