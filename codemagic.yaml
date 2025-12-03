@@ -6,10 +6,7 @@ workflows:
       java: default
       ndk: r21e
       android_sdk_version: android-36
-      xcode: latest
       flutter: stable
-      groups:
-        - google_play # Firebase 等凭证组
     scripts:
       - name: Get Flutter dependencies
         script: flutter pub get
