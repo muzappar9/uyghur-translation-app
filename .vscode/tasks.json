@@ -1,0 +1,39 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "flutter-pub-get",
+      "type": "shell",
+      "command": "D:/projects/Development/Flutter-SDK/flutter/bin/flutter",
+      "args": ["pub", "get"],
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "flutter-clean",
+      "type": "shell",
+      "command": "D:/projects/Development/Flutter-SDK/flutter/bin/flutter",
+      "args": ["clean"],
+      "problemMatcher": []
+    },
+    {
+      "label": "flutter-analyze",
+      "type": "shell",
+      "command": "D:/projects/Development/Flutter-SDK/flutter/bin/flutter",
+      "args": ["analyze"],
+      "problemMatcher": [
+        "$dart"
+      ]
+    },
+    {
+      "label": "flutter-test",
+      "type": "shell",
+      "command": "D:/projects/Development/Flutter-SDK/flutter/bin/flutter",
+      "args": ["test"],
+      "problemMatcher": []
+    }
+  ]
+}

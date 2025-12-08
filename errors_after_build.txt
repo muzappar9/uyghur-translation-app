@@ -1,0 +1,163 @@
+﻿Analyzing uyghur-translation-app1...                            
+
+  error - The getter 'imageUrl' isn't defined for the type 'OcrResultModel' - lib\features\ocr\data\models\ocr_model.dart:53:22 - undefined_getter
+  error - The getter 'detectedLanguage' isn't defined for the type 'OcrResultModel' - lib\features\ocr\data\models\ocr_model.dart:55:30 - undefined_getter
+  error - The getter 'editHistory' isn't defined for the type 'OcrResultModel' - lib\features\ocr\data\models\ocr_model.dart:56:25 - undefined_getter
+  error - The getter 'createdAt' isn't defined for the type 'OcrResultModel' - lib\features\ocr\data\models\ocr_model.dart:57:23 - undefined_getter
+  error - The getter 'lastModified' isn't defined for the type 'OcrResultModel' - lib\features\ocr\data\models\ocr_model.dart:58:26 - undefined_getter
+  error - The getter 'userId' isn't defined for the type 'OcrResultModel' - lib\features\ocr\data\models\ocr_model.dart:59:20 - undefined_getter
+  error - The getter 'isFavorite' isn't defined for the type 'OcrResultModel' - lib\features\ocr\data\models\ocr_model.dart:60:24 - undefined_getter
+  error - The named parameter 'imageUrl' isn't defined - lib\features\ocr\data\repositories\ocr_repository_impl.dart:40:9 - undefined_named_parameter
+  error - The named parameter 'recognizedText' isn't defined - lib\features\ocr\data\repositories\ocr_repository_impl.dart:41:9 - undefined_named_parameter
+  error - The named parameter 'detectedLanguage' isn't defined - lib\features\ocr\data\repositories\ocr_repository_impl.dart:42:9 - undefined_named_parameter
+  error - The named parameter 'createdAt' isn't defined - lib\features\ocr\data\repositories\ocr_repository_impl.dart:43:9 - undefined_named_parameter
+  error - The named parameter 'isFavorite' isn't defined - lib\features\ocr\data\repositories\ocr_repository_impl.dart:44:9 - undefined_named_parameter
+  error - The named parameter 'isSynced' isn't defined - lib\features\ocr\data\repositories\ocr_repository_impl.dart:45:9 - undefined_named_parameter
+  error - The getter 'editHistory' isn't defined for the type 'OcrResultModel' - lib\features\ocr\data\repositories\ocr_repository_impl.dart:161:40 - undefined_getter
+  error - The named parameter 'imageUrl' isn't defined - lib\features\ocr\data\repositories\ocr_repository_impl.dart:165:9 - undefined_named_parameter
+  error - The getter 'imageUrl' isn't defined for the type 'OcrResultModel' - lib\features\ocr\data\repositories\ocr_repository_impl.dart:165:28 - undefined_getter
+  error - The named parameter 'recognizedText' isn't defined - lib\features\ocr\data\repositories\ocr_repository_impl.dart:166:9 - undefined_named_parameter
+  error - The named parameter 'detectedLanguage' isn't defined - lib\features\ocr\data\repositories\ocr_repository_impl.dart:167:9 - undefined_named_parameter
+  error - The getter 'detectedLanguage' isn't defined for the type 'OcrResultModel' - lib\features\ocr\data\repositories\ocr_repository_impl.dart:167:36 - undefined_getter
+  error - The named parameter 'editHistory' isn't defined - lib\features\ocr\data\repositories\ocr_repository_impl.dart:168:9 - undefined_named_parameter
+  error - The named parameter 'createdAt' isn't defined - lib\features\ocr\data\repositories\ocr_repository_impl.dart:169:9 - undefined_named_parameter
+  error - The getter 'createdAt' isn't defined for the type 'OcrResultModel' - lib\features\ocr\data\repositories\ocr_repository_impl.dart:169:29 - undefined_getter
+  error - The named parameter 'lastModified' isn't defined - lib\features\ocr\data\repositories\ocr_repository_impl.dart:170:9 - undefined_named_parameter
+  error - The named parameter 'userId' isn't defined - lib\features\ocr\data\repositories\ocr_repository_impl.dart:171:9 - undefined_named_parameter
+  error - The getter 'userId' isn't defined for the type 'OcrResultModel' - lib\features\ocr\data\repositories\ocr_repository_impl.dart:171:26 - undefined_getter
+  error - The named parameter 'isFavorite' isn't defined - lib\features\ocr\data\repositories\ocr_repository_impl.dart:172:9 - undefined_named_parameter
+  error - The getter 'isFavorite' isn't defined for the type 'OcrResultModel' - lib\features\ocr\data\repositories\ocr_repository_impl.dart:172:30 - undefined_getter
+  error - The named parameter 'isSynced' isn't defined - lib\features\ocr\data\repositories\ocr_repository_impl.dart:173:9 - undefined_named_parameter
+  error - The named parameter 'imageUrl' isn't defined - lib\features\ocr\data\repositories\ocr_repository_impl.dart:200:9 - undefined_named_parameter
+  error - The getter 'imageUrl' isn't defined for the type 'OcrResultModel' - lib\features\ocr\data\repositories\ocr_repository_impl.dart:200:28 - undefined_getter
+  error - The named parameter 'recognizedText' isn't defined - lib\features\ocr\data\repositories\ocr_repository_impl.dart:201:9 - undefined_named_parameter
+  error - The named parameter 'detectedLanguage' isn't defined - lib\features\ocr\data\repositories\ocr_repository_impl.dart:202:9 - undefined_named_parameter
+  error - The getter 'detectedLanguage' isn't defined for the type 'OcrResultModel' - lib\features\ocr\data\repositories\ocr_repository_impl.dart:202:36 - undefined_getter
+  error - The named parameter 'editHistory' isn't defined - lib\features\ocr\data\repositories\ocr_repository_impl.dart:203:9 - undefined_named_parameter
+  error - The getter 'editHistory' isn't defined for the type 'OcrResultModel' - lib\features\ocr\data\repositories\ocr_repository_impl.dart:203:31 - undefined_getter
+  error - The named parameter 'createdAt' isn't defined - lib\features\ocr\data\repositories\ocr_repository_impl.dart:204:9 - undefined_named_parameter
+  error - The getter 'createdAt' isn't defined for the type 'OcrResultModel' - lib\features\ocr\data\repositories\ocr_repository_impl.dart:204:29 - undefined_getter
+  error - The named parameter 'lastModified' isn't defined - lib\features\ocr\data\repositories\ocr_repository_impl.dart:205:9 - undefined_named_parameter
+  error - The named parameter 'userId' isn't defined - lib\features\ocr\data\repositories\ocr_repository_impl.dart:206:9 - undefined_named_parameter
+  error - The getter 'userId' isn't defined for the type 'OcrResultModel' - lib\features\ocr\data\repositories\ocr_repository_impl.dart:206:26 - undefined_getter
+  error - The named parameter 'isFavorite' isn't defined - lib\features\ocr\data\repositories\ocr_repository_impl.dart:207:9 - undefined_named_parameter
+  error - The getter 'isFavorite' isn't defined for the type 'OcrResultModel' - lib\features\ocr\data\repositories\ocr_repository_impl.dart:207:31 - undefined_getter
+  error - The named parameter 'isSynced' isn't defined - lib\features\ocr\data\repositories\ocr_repository_impl.dart:208:9 - undefined_named_parameter
+  error - The getter 'isFavorite' isn't defined for the type 'OcrResultModel' - lib\features\ocr\data\repositories\ocr_repository_impl.dart:212:30 - undefined_getter
+  error - The getter 'translatedText' isn't defined for the type 'TranslationHistoryModel' - lib\features\translation\data\models\translation_model.dart:46:28 - undefined_getter
+  error - The getter 'userId' isn't defined for the type 'TranslationHistoryModel' - lib\features\translation\data\models\translation_model.dart:50:20 - undefined_getter
+  error - The named parameter 'sourceText' isn't defined - lib\features\translation\data\repositories\translation_repository_impl.dart:91:9 - undefined_named_parameter
+  error - The named parameter 'translatedText' isn't defined - lib\features\translation\data\repositories\translation_repository_impl.dart:92:9 - undefined_named_parameter
+  error - The named parameter 'sourceLanguage' isn't defined - lib\features\translation\data\repositories\translation_repository_impl.dart:93:9 - undefined_named_parameter
+  error - The named parameter 'targetLanguage' isn't defined - lib\features\translation\data\repositories\translation_repository_impl.dart:94:9 - undefined_named_parameter
+  error - The named parameter 'timestamp' isn't defined - lib\features\translation\data\repositories\translation_repository_impl.dart:95:9 - undefined_named_parameter
+  error - The named parameter 'isSynced' isn't defined - lib\features\translation\data\repositories\translation_repository_impl.dart:96:9 - undefined_named_parameter
+  error - The getter 'translatedText' isn't defined for the type 'TranslationHistoryModel' - lib\features\translation\data\repositories\translation_repository_impl.dart:143:37 - undefined_getter
+  error - The named parameter 'type' isn't defined - lib\shared\repositories\analytics_service.dart:46:7 - undefined_named_parameter
+  error - The named parameter 'timestamp' isn't defined - lib\shared\repositories\analytics_service.dart:47:7 - undefined_named_parameter
+  error - The named parameter 'metadata' isn't defined - lib\shared\repositories\analytics_service.dart:48:7 - undefined_named_parameter
+  error - The named parameter 'userId' isn't defined - lib\shared\repositories\analytics_service.dart:49:7 - undefined_named_parameter
+  error - The named parameter 'sessionId' isn't defined - lib\shared\repositories\analytics_service.dart:50:7 - undefined_named_parameter
+  error - The named parameter 'deviceInfo' isn't defined - lib\shared\repositories\analytics_service.dart:51:7 - undefined_named_parameter
+  error - The getter 'type' isn't defined for the type 'AnalyticsEventModel' - lib\shared\repositories\analytics_service.dart:60:38 - undefined_getter
+  error - The getter 'metadata' isn't defined for the type 'AnalyticsEventModel' - lib\shared\repositories\analytics_service.dart:64:27 - undefined_getter
+  error - The getter 'userId' isn't defined for the type 'AnalyticsEventModel' - lib\shared\repositories\analytics_service.dart:65:21 - undefined_getter
+  error - The getter 'sessionId' isn't defined for the type 'AnalyticsEventModel' - lib\shared\repositories\analytics_service.dart:66:24 - undefined_getter
+  error - The getter 'deviceInfo' isn't defined for the type 'AnalyticsEventModel' - lib\shared\repositories\analytics_service.dart:67:25 - undefined_getter
+  error - The method 'typeEqualTo' isn't defined for the type 'QueryBuilder' - lib\shared\repositories\analytics_service.dart:307:12 - undefined_method
+  error - The method 'timestampBetween' isn't defined for the type 'QueryBuilder' - lib\shared\repositories\analytics_service.dart:337:12 - undefined_method
+  error - The method 'timestampLessThan' isn't defined for the type 'QueryBuilder' - lib\shared\repositories\analytics_service.dart:458:12 - undefined_method
+  error - The named parameter 'type' isn't defined - lib\shared\repositories\favorites_manager.dart:47:7 - undefined_named_parameter
+  error - The named parameter 'title' isn't defined - lib\shared\repositories\favorites_manager.dart:48:7 - undefined_named_parameter
+  error - The named parameter 'sourceText' isn't defined - lib\shared\repositories\favorites_manager.dart:49:7 - undefined_named_parameter
+  error - The named parameter 'translatedText' isn't defined - lib\shared\repositories\favorites_manager.dart:50:7 - undefined_named_parameter
+  error - The named parameter 'sourceLang' isn't defined - lib\shared\repositories\favorites_manager.dart:51:7 - undefined_named_parameter
+  error - The named parameter 'targetLang' isn't defined - lib\shared\repositories\favorites_manager.dart:52:7 - undefined_named_parameter
+  error - The named parameter 'tags' isn't defined - lib\shared\repositories\favorites_manager.dart:53:7 - undefined_named_parameter
+  error - The named parameter 'notes' isn't defined - lib\shared\repositories\favorites_manager.dart:54:7 - undefined_named_parameter
+  error - The named parameter 'createdAt' isn't defined - lib\shared\repositories\favorites_manager.dart:55:7 - undefined_named_parameter
+  error - The named parameter 'lastAccessedAt' isn't defined - lib\shared\repositories\favorites_manager.dart:56:7 - undefined_named_parameter
+  error - The named parameter 'accessCount' isn't defined - lib\shared\repositories\favorites_manager.dart:57:7 - undefined_named_parameter
+  error - The getter 'type' isn't defined for the type 'FavoriteItemModel' - lib\shared\repositories\favorites_manager.dart:66:38 - undefined_getter
+  error - The getter 'title' isn't defined for the type 'FavoriteItemModel' - lib\shared\repositories\favorites_manager.dart:69:20 - undefined_getter
+  error - The getter 'translatedText' isn't defined for the type 'FavoriteItemModel' - lib\shared\repositories\favorites_manager.dart:71:29 - undefined_getter
+  error - The getter 'sourceLang' isn't defined for the type 'FavoriteItemModel' - lib\shared\repositories\favorites_manager.dart:72:25 - undefined_getter
+  error - The getter 'targetLang' isn't defined for the type 'FavoriteItemModel' - lib\shared\repositories\favorites_manager.dart:73:25 - undefined_getter
+  error - The getter 'tags' isn't defined for the type 'FavoriteItemModel' - lib\shared\repositories\favorites_manager.dart:74:19 - undefined_getter
+  error - The getter 'notes' isn't defined for the type 'FavoriteItemModel' - lib\shared\repositories\favorites_manager.dart:75:20 - undefined_getter
+  error - The getter 'createdAt' isn't defined for the type 'FavoriteItemModel' - lib\shared\repositories\favorites_manager.dart:76:24 - undefined_getter
+  error - The getter 'lastAccessedAt' isn't defined for the type 'FavoriteItemModel' - lib\shared\repositories\favorites_manager.dart:77:29 - undefined_getter
+  error - The getter 'accessCount' isn't defined for the type 'FavoriteItemModel' - lib\shared\repositories\favorites_manager.dart:78:26 - undefined_getter
+  error - The method 'sortByCreatedAtDesc' isn't defined for the type 'QueryBuilder' - lib\shared\repositories\favorites_manager.dart:206:12 - undefined_method
+  error - The method 'typeEqualTo' isn't defined for the type 'QueryBuilder' - lib\shared\repositories\favorites_manager.dart:236:12 - undefined_method
+  error - The method 'sourceLangEqualTo' isn't defined for the type 'QueryBuilder' - lib\shared\repositories\favorites_manager.dart:270:12 - undefined_method
+  error - The method 'sortByCreatedAtDesc' isn't defined for the type 'QueryBuilder' - lib\shared\repositories\favorites_manager.dart:303:49 - undefined_method
+  error - The method 'sortByCreatedAtDesc' isn't defined for the type 'QueryBuilder' - lib\shared\repositories\favorites_manager.dart:336:49 - undefined_method
+  error - The setter 'notes' isn't defined for the type 'FavoriteItemModel' - lib\shared\repositories\favorites_manager.dart:372:13 - undefined_setter
+  error - The getter 'tags' isn't defined for the type 'FavoriteItemModel' - lib\shared\repositories\favorites_manager.dart:400:26 - undefined_getter
+  error - The setter 'tags' isn't defined for the type 'FavoriteItemModel' - lib\shared\repositories\favorites_manager.dart:403:15 - undefined_setter
+  error - The getter 'tags' isn't defined for the type 'FavoriteItemModel' - lib\shared\repositories\favorites_manager.dart:432:26 - undefined_getter
+  error - The setter 'tags' isn't defined for the type 'FavoriteItemModel' - lib\shared\repositories\favorites_manager.dart:434:13 - undefined_setter
+  error - The getter 'accessCount' isn't defined for the type 'FavoriteItemModel' - lib\shared\repositories\favorites_manager.dart:461:13 - undefined_getter
+  error - The setter 'accessCount' isn't defined for the type 'FavoriteItemModel' - lib\shared\repositories\favorites_manager.dart:461:13 - undefined_setter
+  error - The setter 'lastAccessedAt' isn't defined for the type 'FavoriteItemModel' - lib\shared\repositories\favorites_manager.dart:462:13 - undefined_setter
+  error - The getter 'tags' isn't defined for the type 'FavoriteItemModel' - lib\shared\repositories\favorites_manager.dart:538:19 - undefined_getter
+  error - The getter 'tags' isn't defined for the type 'FavoriteItemModel' - lib\shared\repositories\favorites_manager.dart:539:30 - undefined_getter
+  error - The named parameter 'type' isn't defined - lib\shared\repositories\pending_sync_queue.dart:40:7 - undefined_named_parameter
+  error - The named parameter 'data' isn't defined - lib\shared\repositories\pending_sync_queue.dart:41:7 - undefined_named_parameter
+  error - The named parameter 'createdAt' isn't defined - lib\shared\repositories\pending_sync_queue.dart:42:7 - undefined_named_parameter
+  error - The named parameter 'retryCount' isn't defined - lib\shared\repositories\pending_sync_queue.dart:43:7 - undefined_named_parameter
+  error - The named parameter 'isCompleted' isn't defined - lib\shared\repositories\pending_sync_queue.dart:44:7 - undefined_named_parameter
+  error - The getter 'type' isn't defined for the type 'PendingSyncModel' - lib\shared\repositories\pending_sync_queue.dart:53:38 - undefined_getter
+  error - The getter 'data' isn't defined for the type 'PendingSyncModel' - lib\shared\repositories\pending_sync_queue.dart:56:23 - undefined_getter
+  error - The getter 'createdAt' isn't defined for the type 'PendingSyncModel' - lib\shared\repositories\pending_sync_queue.dart:57:24 - undefined_getter
+  error - The getter 'isCompleted' isn't defined for the type 'PendingSyncModel' - lib\shared\repositories\pending_sync_queue.dart:59:26 - undefined_getter
+  error - The method 'isCompletedEqualTo' isn't defined for the type 'QueryBuilder' - lib\shared\repositories\pending_sync_queue.dart:126:12 - undefined_method
+  error - The method 'isCompletedEqualTo' isn't defined for the type 'QueryBuilder' - lib\shared\repositories\pending_sync_queue.dart:150:12 - undefined_method
+  error - The setter 'isCompleted' isn't defined for the type 'PendingSyncModel' - lib\shared\repositories\pending_sync_queue.dart:180:13 - undefined_setter
+  error - The setter 'isCompleted' isn't defined for the type 'PendingSyncModel' - lib\shared\repositories\pending_sync_queue.dart:213:15 - undefined_setter
+  error - The method 'isCompletedEqualTo' isn't defined for the type 'QueryBuilder' - lib\shared\repositories\pending_sync_queue.dart:259:12 - undefined_method
+  error - The method 'isCompletedEqualTo' isn't defined for the type 'QueryBuilder' - lib\shared\repositories\pending_sync_queue.dart:301:12 - undefined_method
+  error - The method 'isCompletedEqualTo' isn't defined for the type 'QueryBuilder' - lib\shared\repositories\pending_sync_queue.dart:315:48 - undefined_method
+  error - The named parameter 'sourceText' isn't defined - lib\shared\repositories\translation_history_repository.dart:39:9 - undefined_named_parameter
+  error - The named parameter 'translatedText' isn't defined - lib\shared\repositories\translation_history_repository.dart:40:9 - undefined_named_parameter
+  error - The named parameter 'sourceLanguage' isn't defined - lib\shared\repositories\translation_history_repository.dart:41:9 - undefined_named_parameter
+  error - The named parameter 'targetLanguage' isn't defined - lib\shared\repositories\translation_history_repository.dart:42:9 - undefined_named_parameter
+  error - The named parameter 'sourceType' isn't defined - lib\shared\repositories\translation_history_repository.dart:43:9 - undefined_named_parameter
+  error - The named parameter 'timestamp' isn't defined - lib\shared\repositories\translation_history_repository.dart:44:9 - undefined_named_parameter
+  error - The method 'sourceLanguageEqualTo' isn't defined for the type 'QueryBuilder' - lib\shared\repositories\translation_history_repository.dart:105:12 - undefined_method
+  error - The method 'sourceTypeEqualTo' isn't defined for the type 'QueryBuilder' - lib\shared\repositories\translation_history_repository.dart:137:12 - undefined_method
+  error - The getter 'translatedText' isn't defined for the type 'TranslationHistoryModel' - lib\shared\repositories\translation_history_repository.dart:178:17 - undefined_getter
+  error - The getter 'sourceType' isn't defined for the type 'TranslationHistoryModel' - lib\shared\repositories\translation_history_repository.dart:210:21 - undefined_getter
+  error - The getter 'sourceType' isn't defined for the type 'TranslationHistoryModel' - lib\shared\repositories\translation_history_repository.dart:210:48 - undefined_getter
+  error - The getter 'translatedText' isn't defined for the type 'TranslationHistoryModel' - lib\shared\repositories\translation_history_repository.dart:224:37 - undefined_getter
+  error - The method 'userIdEqualTo' isn't defined for the type 'QueryBuilder' - lib\shared\services\database\isar_database_service.dart:86:14 - undefined_method
+  error - The method 'userIdEqualTo' isn't defined for the type 'QueryBuilder' - lib\shared\services\database\isar_database_service.dart:117:29 - undefined_method
+  error - The method 'userIdEqualTo' isn't defined for the type 'QueryBuilder' - lib\shared\services\database\isar_database_service.dart:147:16 - undefined_method
+  error - The method 'userIdEqualTo' isn't defined for the type 'QueryBuilder' - lib\shared\services\database\isar_database_service.dart:193:14 - undefined_method
+  error - The method 'sortByCreatedAtDesc' isn't defined for the type 'QueryBuilder' - lib\shared\services\database\isar_database_service.dart:200:14 - undefined_method
+  error - The method 'isFavoriteEqualTo' isn't defined for the type 'QueryBuilder' - lib\shared\services\database\isar_database_service.dart:214:57 - undefined_method
+  error - The method 'userIdEqualTo' isn't defined for the type 'QueryBuilder' - lib\shared\services\database\isar_database_service.dart:245:16 - undefined_method
+  error - The method 'userIdEqualTo' isn't defined for the type 'QueryBuilder' - lib\shared\services\database\isar_database_service.dart:274:12 - undefined_method
+  error - The setter 'darkMode' isn't defined for the type 'UserPreferencesModel' - lib\shared\services\database\isar_database_service.dart:301:18 - undefined_setter
+  error - The setter 'enableNotifications' isn't defined for the type 'UserPreferencesModel' - lib\shared\services\database\isar_database_service.dart:307:18 - undefined_setter
+  error - The setter 'enableOfflineMode' isn't defined for the type 'UserPreferencesModel' - lib\shared\services\database\isar_database_service.dart:310:18 - undefined_setter
+  error - The setter 'lastUpdated' isn't defined for the type 'UserPreferencesModel' - lib\shared\services\database\isar_database_service.dart:313:16 - undefined_setter
+  error - The method 'userIdEqualTo' isn't defined for the type 'QueryBuilder' - lib\shared\services\database\isar_database_service.dart:328:14 - undefined_method
+   info - The imported package 'hive' isn't a dependency of the importing package - test\unit\providers\hive_provider_test.dart:3:8 - depend_on_referenced_packages
+  error - Undefined name 'userPreferencesBoxProvider' - test\unit\providers\hive_provider_test.dart:34:40 - undefined_identifier
+  error - Undefined name 'appConfigBoxProvider' - test\unit\providers\hive_provider_test.dart:40:40 - undefined_identifier
+  error - Undefined name 'cacheBoxProvider' - test\unit\providers\hive_provider_test.dart:46:40 - undefined_identifier
+  error - Undefined name 'userPreferencesBoxProvider' - test\unit\providers\hive_provider_test.dart:52:42 - undefined_identifier
+  error - Undefined name 'appConfigBoxProvider' - test\unit\providers\hive_provider_test.dart:53:43 - undefined_identifier
+  error - Undefined name 'cacheBoxProvider' - test\unit\providers\hive_provider_test.dart:54:42 - undefined_identifier
+
+flutter : 151 issues found. (ran in 13.2s)
+所在位置 行:1 字符: 1
++ flutter analyze 2>&1 | Out-File -FilePath errors_after_build.txt -Enc
+ ...
++ ~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (151 issues found. (ran in 
+    13.2s):String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 

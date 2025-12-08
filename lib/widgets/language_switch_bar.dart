@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'glass_card.dart';
 import '../i18n/localizations.dart';
+import '../core/animations/animations.dart';
 
 /// LanguageSwitchBar: 源语言/交换/目标语言切换栏
+/// 升级: Stage 19 添加动画支持
 /// Figma Variant Specs:
 /// - Variant: LTR/RTL | Expanded/Compact | Active Source/Target
 /// - Import to Figma: Use Auto Layout (H:Space Between), 
@@ -26,8 +29,6 @@ class LanguageSwitchBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isRTL = Directionality.of(context) == TextDirection.rtl;
-
     return GlassCard(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       borderRadius: 20,
@@ -36,29 +37,26 @@ class LanguageSwitchBar extends StatelessWidget {
         children: [
           // Source Language Button
           Expanded(
-            child: _LanguageButton(
+            child: _AnimatedLanguageButton(
               label: sourceLanguage.isEmpty ? t(context, 'home.lang.source') : sourceLanguage,
               onTap: onSourceTap,
               isActive: true,
             ),
           ),
           
-          // Swap Button
+          // Animated Swap Button
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: IconButton(
-              onPressed: onSwapTap,
-              icon: Icon(
-                isRTL ? Icons.swap_horiz : Icons.swap_horiz,
-                color: Theme.of(context).colorScheme.primary,
-              ),
-              tooltip: t(context, 'home.lang.swap'),
+            child: AnimatedLanguageSwap(
+              onSwap: onSwapTap,
+              iconColor: Theme.of(context).colorScheme.primary,
+              size: 28,
             ),
           ),
           
           // Target Language Button
           Expanded(
-            child: _LanguageButton(
+            child: _AnimatedLanguageButton(
               label: targetLanguage.isEmpty ? t(context, 'home.lang.target') : targetLanguage,
               onTap: onTargetTap,
               isActive: false,
@@ -70,43 +68,97 @@ class LanguageSwitchBar extends StatelessWidget {
   }
 }
 
-class _LanguageButton extends StatelessWidget {
+class _AnimatedLanguageButton extends StatefulWidget {
   final String label;
   final VoidCallback? onTap;
   final bool isActive;
 
-  const _LanguageButton({
+  const _AnimatedLanguageButton({
     required this.label,
     this.onTap,
     this.isActive = false,
   });
 
   @override
+  State<_AnimatedLanguageButton> createState() => _AnimatedLanguageButtonState();
+}
+
+class _AnimatedLanguageButtonState extends State<_AnimatedLanguageButton>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _scaleAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 100),
+    );
+
+    _scaleAnimation = Tween<double>(
+      begin: 1.0,
+      end: 0.95,
+    ).animate(CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeOut,
+    ));
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void _onTapDown(TapDownDetails details) {
+    _controller.forward();
+    HapticFeedback.selectionClick();
+  }
+
+  void _onTapUp(TapUpDetails details) {
+    _controller.reverse();
+  }
+
+  void _onTapCancel() {
+    _controller.reverse();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(12),
-        child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-          decoration: BoxDecoration(
-            color: isActive
-                ? (isDark ? Colors.white.withOpacity(0.1) : Colors.black.withOpacity(0.05))
-                : Colors.transparent,
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: Text(
-            label,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontWeight: isActive ? FontWeight.w600 : FontWeight.w500,
-              color: isDark ? Colors.white : Colors.black87,
+    return GestureDetector(
+      onTapDown: widget.onTap != null ? _onTapDown : null,
+      onTapUp: widget.onTap != null ? _onTapUp : null,
+      onTapCancel: widget.onTap != null ? _onTapCancel : null,
+      onTap: widget.onTap,
+      child: AnimatedBuilder(
+        animation: _scaleAnimation,
+        builder: (context, child) {
+          return Transform.scale(
+            scale: _scaleAnimation.value,
+            child: AnimatedContainer(
+              duration: AppAnimationDuration.fast,
+              curve: Curves.easeOut,
+              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+              decoration: BoxDecoration(
+                color: widget.isActive
+                    ? (isDark ? Colors.white.withValues(alpha: 0.1) : Colors.black.withValues(alpha: 0.05))
+                    : Colors.transparent,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Text(
+                widget.label,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontWeight: widget.isActive ? FontWeight.w600 : FontWeight.w500,
+                  color: isDark ? Colors.white : Colors.black87,
+                ),
+              ),
             ),
-          ),
-        ),
+          );
+        },
       ),
     );
   }

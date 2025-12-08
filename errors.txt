@@ -1,0 +1,208 @@
+﻿Analyzing uyghur-translation-app1...                            
+
+  error - Target of URI doesn't exist: '../../../../shared/data/models/isar_models/ocr_result_model.dart' - lib\features\ocr\data\models\ocr_model.dart:1:8 - uri_does_not_exist
+  error - Undefined class 'OcrResultModel' - lib\features\ocr\data\models\ocr_model.dart:50:29 - undefined_class
+  error - Target of URI doesn't exist: '../../../../shared/data/models/isar_models/ocr_result_model.dart' - lib\features\ocr\data\repositories\ocr_repository_impl.dart:8:8 - uri_does_not_exist
+  error - The method 'OcrResultModel' isn't defined for the type 'OcrRepositoryImpl' - lib\features\ocr\data\repositories\ocr_repository_impl.dart:39:25 - undefined_method
+  error - The property 'id' can't be unconditionally accessed because the receiver can be 'null' - lib\features\ocr\data\repositories\ocr_repository_impl.dart:152:55 - unchecked_use_of_nullable_value
+  error - The method 'OcrResultModel' isn't defined for the type 'OcrRepositoryImpl' - lib\features\ocr\data\repositories\ocr_repository_impl.dart:164:23 - undefined_method
+  error - The property 'id' can't be unconditionally accessed because the receiver can be 'null' - lib\features\ocr\data\repositories\ocr_repository_impl.dart:190:55 - unchecked_use_of_nullable_value
+  error - The method 'OcrResultModel' isn't defined for the type 'OcrRepositoryImpl' - lib\features\ocr\data\repositories\ocr_repository_impl.dart:199:23 - undefined_method
+  error - The property 'isSynced' can't be unconditionally accessed because the receiver can be 'null' - lib\features\ocr\data\repositories\ocr_repository_impl.dart:239:53 - unchecked_use_of_nullable_value
+   info - The imported package 'isar' isn't a dependency of the importing package - lib\features\translation\data\models\pending_translation_model.dart:1:8 - depend_on_referenced_packages
+  error - Target of URI doesn't exist: 'package:isar/isar.dart' - lib\features\translation\data\models\pending_translation_model.dart:1:8 - uri_does_not_exist
+  error - Target of URI hasn't been generated: 'package:uyghur_translator/features/translation/data/models/pending_translation_model.g.dart' - lib\features\translation\data\models\pending_translation_model.dart:3:6 - uri_has_not_been_generated
+  error - Undefined name 'Collection' used as an annotation - lib\features\translation\data\models\pending_translation_model.dart:6:1 - undefined_annotation
+  error - Undefined class 'Id' - lib\features\translation\data\models\pending_translation_model.dart:8:3 - undefined_class
+  error - Undefined name 'Isar' - lib\features\translation\data\models\pending_translation_model.dart:8:11 - undefined_identifier
+   info - The imported package 'isar' isn't a dependency of the importing package - lib\features\translation\data\models\translation_isar_model.dart:1:8 - depend_on_referenced_packages
+  error - Target of URI doesn't exist: 'package:isar/isar.dart' - lib\features\translation\data\models\translation_isar_model.dart:1:8 - uri_does_not_exist
+  error - Target of URI hasn't been generated: 'package:uyghur_translator/features/translation/data/models/translation_isar_model.g.dart' - lib\features\translation\data\models\translation_isar_model.dart:3:6 - uri_has_not_been_generated
+  error - Undefined name 'Collection' used as an annotation - lib\features\translation\data\models\translation_isar_model.dart:6:1 - undefined_annotation
+  error - Undefined class 'Id' - lib\features\translation\data\models\translation_isar_model.dart:8:3 - undefined_class
+  error - Undefined name 'Isar' - lib\features\translation\data\models\translation_isar_model.dart:8:11 - undefined_identifier
+  error - Undefined name 'Collection' used as an annotation - lib\features\translation\data\models\translation_isar_model.dart:23:1 - undefined_annotation
+  error - Undefined class 'Id' - lib\features\translation\data\models\translation_isar_model.dart:25:3 - undefined_class
+  error - Undefined name 'Isar' - lib\features\translation\data\models\translation_isar_model.dart:25:11 - undefined_identifier
+  error - Target of URI doesn't exist: '../../../../shared/data/models/isar_models/translation_history_model.dart' - lib\features\translation\data\models\translation_model.dart:1:8 - uri_does_not_exist
+  error - Undefined class 'TranslationHistoryModel' - lib\features\translation\data\models\translation_model.dart:42:37 - undefined_class
+   info - The imported package 'isar' isn't a dependency of the importing package - lib\features\translation\data\repositories\pending_translation_repository.dart:1:8 - depend_on_referenced_packages
+  error - Target of URI doesn't exist: 'package:isar/isar.dart' - lib\features\translation\data\repositories\pending_translation_repository.dart:1:8 - uri_does_not_exist
+  error - Undefined class 'Isar' - lib\features\translation\data\repositories\pending_translation_repository.dart:33:9 - undefined_class
+  error - Undefined class 'Isar' - lib\features\translation\data\repositories\pending_translation_repository.dart:35:46 - undefined_class
+   info - The imported package 'isar' isn't a dependency of the importing package - lib\features\translation\data\repositories\translation_repository.dart:1:8 - depend_on_referenced_packages
+  error - Target of URI doesn't exist: 'package:isar/isar.dart' - lib\features\translation\data\repositories\translation_repository.dart:1:8 - uri_does_not_exist
+  error - Undefined class 'Isar' - lib\features\translation\data\repositories\translation_repository.dart:31:9 - undefined_class
+  error - Undefined class 'Isar' - lib\features\translation\data\repositories\translation_repository.dart:35:14 - undefined_class
+  error - Target of URI doesn't exist: '../../../../shared/data/models/isar_models/translation_history_model.dart' - lib\features\translation\data\repositories\translation_repository_impl.dart:7:8 - uri_does_not_exist
+  error - The method 'TranslationHistoryModel' isn't defined for the type 'TranslationRepositoryImpl' - lib\features\translation\data\repositories\translation_repository_impl.dart:90:23 - undefined_method
+  error - The name 'TranslationHistoryModel' isn't a type, so it can't be used as a type argument - lib\features\translation\data\repositories\translation_repository_impl.dart:174:12 - non_type_as_type_argument
+  error - The property 'isSynced' can't be unconditionally accessed because the receiver can be 'null' - lib\features\translation\data\repositories\translation_repository_impl.dart:274:53 - unchecked_use_of_nullable_value
+   info - The imported package 'translator' isn't a dependency of the importing package - lib\features\translation\data\services\google_translate_service.dart:2:8 - depend_on_referenced_packages
+  error - Target of URI doesn't exist: 'package:translator/translator.dart' - lib\features\translation\data\services\google_translate_service.dart:2:8 - uri_does_not_exist
+  error - Undefined class 'GoogleTranslator' - lib\features\translation\data\services\google_translate_service.dart:8:9 - undefined_class
+  error - The method 'GoogleTranslator' isn't defined for the type 'GoogleTranslateService' - lib\features\translation\data\services\google_translate_service.dart:8:40 - undefined_method
+   info - The imported package 'isar' isn't a dependency of the importing package - lib\shared\providers\isar_provider.dart:1:8 - depend_on_referenced_packages
+  error - Target of URI doesn't exist: 'package:isar/isar.dart' - lib\shared\providers\isar_provider.dart:1:8 - uri_does_not_exist
+  error - The name 'Isar' isn't a type, so it can't be used as a type argument - lib\shared\providers\isar_provider.dart:7:37 - non_type_as_type_argument
+  error - Undefined name 'Isar' - lib\shared\providers\isar_provider.dart:10:22 - undefined_identifier
+  error - Undefined name 'TranslationIsarModelSchema' - lib\shared\providers\isar_provider.dart:11:6 - undefined_identifier
+  error - Undefined name 'SavedWordIsarModelSchema' - lib\shared\providers\isar_provider.dart:11:34 - undefined_identifier
+   info - The imported package 'isar' isn't a dependency of the importing package - lib\shared\repositories\analytics_service.dart:3:8 - depend_on_referenced_packages
+  error - Target of URI doesn't exist: 'package:isar/isar.dart' - lib\shared\repositories\analytics_service.dart:3:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: '../data/models/isar_models/analytics_event_model.dart' - lib\shared\repositories\analytics_service.dart:6:8 - uri_does_not_exist
+  error - Undefined class 'AnalyticsEventModel' - lib\shared\repositories\analytics_service.dart:44:3 - undefined_class
+  error - The method 'AnalyticsEventModel' isn't defined for the type 'AnalyticsEvent' - lib\shared\repositories\analytics_service.dart:45:12 - undefined_method
+  error - Undefined class 'AnalyticsEventModel' - lib\shared\repositories\analytics_service.dart:56:36 - undefined_class
+   info - The imported package 'isar' isn't a dependency of the importing package - lib\shared\repositories\favorites_manager.dart:3:8 - depend_on_referenced_packages
+  error - Target of URI doesn't exist: 'package:isar/isar.dart' - lib\shared\repositories\favorites_manager.dart:3:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: '../data/models/isar_models/favorite_item_model.dart' - lib\shared\repositories\favorites_manager.dart:5:8 - uri_does_not_exist
+  error - Undefined class 'FavoriteItemModel' - lib\shared\repositories\favorites_manager.dart:45:3 - undefined_class
+  error - The method 'FavoriteItemModel' isn't defined for the type 'FavoriteItem' - lib\shared\repositories\favorites_manager.dart:46:12 - undefined_method
+  error - Undefined class 'FavoriteItemModel' - lib\shared\repositories\favorites_manager.dart:62:34 - undefined_class
+   info - The imported package 'isar' isn't a dependency of the importing package - lib\shared\repositories\pending_sync_queue.dart:3:8 - depend_on_referenced_packages
+  error - Target of URI doesn't exist: 'package:isar/isar.dart' - lib\shared\repositories\pending_sync_queue.dart:3:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: '../data/models/isar_models/pending_sync_model.dart' - lib\shared\repositories\pending_sync_queue.dart:7:8 - uri_does_not_exist
+  error - Undefined class 'PendingSyncModel' - lib\shared\repositories\pending_sync_queue.dart:38:3 - undefined_class
+  error - The method 'PendingSyncModel' isn't defined for the type 'PendingSyncItem' - lib\shared\repositories\pending_sync_queue.dart:39:12 - undefined_method
+  error - Undefined class 'PendingSyncModel' - lib\shared\repositories\pending_sync_queue.dart:49:37 - undefined_class
+   info - The imported package 'isar' isn't a dependency of the importing package - lib\shared\repositories\translation_history_repository.dart:3:8 - depend_on_referenced_packages
+  error - Target of URI doesn't exist: 'package:isar/isar.dart' - lib\shared\repositories\translation_history_repository.dart:3:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: '../data/models/isar_models/translation_history_model.dart' - lib\shared\repositories\translation_history_repository.dart:5:8 - uri_does_not_exist
+  error - The method 'TranslationHistoryModel' isn't defined for the type 'TranslationHistoryRepository' - lib\shared\repositories\translation_history_repository.dart:38:21 - undefined_method
+  error - The name 'TranslationHistoryModel' isn't a type, so it can't be used as a type argument - lib\shared\repositories\translation_history_repository.dart:66:15 - non_type_as_type_argument
+  error - The name 'TranslationHistoryModel' isn't a type, so it can't be used as a type argument - lib\shared\repositories\translation_history_repository.dart:93:15 - non_type_as_type_argument
+  error - The name 'TranslationHistoryModel' isn't a type, so it can't be used as a type argument - lib\shared\repositories\translation_history_repository.dart:128:15 - non_type_as_type_argument
+  error - The name 'TranslationHistoryModel' isn't a type, so it can't be used as a type argument - lib\shared\repositories\translation_history_repository.dart:159:15 - non_type_as_type_argument
+  error - The name 'TranslationHistoryModel' isn't a type, so it can't be used as a type argument - lib\shared\repositories\translation_history_repository.dart:348:25 - non_type_as_type_argument
+   info - The imported package 'isar' isn't a dependency of the importing package - lib\shared\services\database\isar_database_service.dart:1:8 - depend_on_referenced_packages
+  error - Target of URI doesn't exist: 'package:isar/isar.dart' - lib\shared\services\database\isar_database_service.dart:1:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: '../../data/models/isar_models/translation_history_model.dart' - lib\shared\services\database\isar_database_service.dart:4:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: '../../data/models/isar_models/ocr_result_model.dart' - lib\shared\services\database\isar_database_service.dart:5:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: '../../data/models/isar_models/user_preferences_model.dart' - lib\shared\services\database\isar_database_service.dart:6:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: '../../data/models/isar_models/pending_sync_model.dart' - lib\shared\services\database\isar_database_service.dart:7:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: '../../data/models/isar_models/favorite_item_model.dart' - lib\shared\services\database\isar_database_service.dart:8:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: '../../data/models/isar_models/analytics_event_model.dart' - lib\shared\services\database\isar_database_service.dart:9:8 - uri_does_not_exist
+  error - Undefined class 'Isar' - lib\shared\services\database\isar_database_service.dart:14:15 - undefined_class
+  error - Undefined name 'Isar' - lib\shared\services\database\isar_database_service.dart:20:21 - undefined_identifier
+  error - Undefined name 'TranslationHistoryModelSchema' - lib\shared\services\database\isar_database_service.dart:22:11 - undefined_identifier
+  error - Undefined name 'OcrResultModelSchema' - lib\shared\services\database\isar_database_service.dart:23:11 - undefined_identifier
+  error - Undefined name 'UserPreferencesModelSchema' - lib\shared\services\database\isar_database_service.dart:24:11 - undefined_identifier
+  error - Undefined name 'PendingSyncModelSchema' - lib\shared\services\database\isar_database_service.dart:25:11 - undefined_identifier
+  error - Undefined name 'FavoriteItemModelSchema' - lib\shared\services\database\isar_database_service.dart:26:11 - undefined_identifier
+  error - Undefined name 'AnalyticsEventModelSchema' - lib\shared\services\database\isar_database_service.dart:27:11 - undefined_identifier
+  error - Undefined class 'Isar' - lib\shared\services\database\isar_database_service.dart:41:10 - undefined_class
+  error - Undefined class 'TranslationHistoryModel' - lib\shared\services\database\isar_database_service.dart:52:5 - undefined_class
+  error - The name 'TranslationHistoryModel' isn't a type, so it can't be used as a type argument - lib\shared\services\database\isar_database_service.dart:65:10 - non_type_as_type_argument
+  error - The name 'TranslationHistoryModel' isn't a type, so it can't be used as a type argument - lib\shared\services\database\isar_database_service.dart:77:22 - non_type_as_type_argument
+  error - The name 'TranslationHistoryModel' isn't a type, so it can't be used as a type argument - lib\shared\services\database\isar_database_service.dart:103:22 - non_type_as_type_argument
+  error - Undefined class 'OcrResultModel' - lib\shared\services\database\isar_database_service.dart:160:36 - undefined_class
+  error - The name 'OcrResultModel' isn't a type, so it can't be used as a type argument - lib\shared\services\database\isar_database_service.dart:172:10 - non_type_as_type_argument
+  error - The name 'OcrResultModel' isn't a type, so it can't be used as a type argument - lib\shared\services\database\isar_database_service.dart:184:22 - non_type_as_type_argument
+  error - The name 'OcrResultModel' isn't a type, so it can't be used as a type argument - lib\shared\services\database\isar_database_service.dart:210:22 - non_type_as_type_argument
+  error - Undefined class 'UserPreferencesModel' - lib\shared\services\database\isar_database_service.dart:258:42 - undefined_class
+  error - The name 'UserPreferencesModel' isn't a type, so it can't be used as a type argument - lib\shared\services\database\isar_database_service.dart:269:17 - non_type_as_type_argument
+   info - The imported package 'mocktail' isn't a dependency of the importing package - test\mocks\mock_classes.dart:1:8 - depend_on_referenced_packages
+  error - Target of URI doesn't exist: 'package:mocktail/mocktail.dart' - test\mocks\mock_classes.dart:1:8 - uri_does_not_exist
+   info - The imported package 'isar' isn't a dependency of the importing package - test\mocks\mock_classes.dart:2:8 - depend_on_referenced_packages
+  error - Target of URI doesn't exist: 'package:isar/isar.dart' - test\mocks\mock_classes.dart:2:8 - uri_does_not_exist
+  error - Classes can only extend other classes - test\mocks\mock_classes.dart:12:24 - extends_non_class
+  error - Classes and mixins can only implement other classes and mixins - test\mocks\mock_classes.dart:12:40 - implements_non_class
+  error - Classes can only extend other classes - test\mocks\mock_classes.dart:15:37 - extends_non_class
+  error - Classes and mixins can only implement other classes and mixins - test\mocks\mock_classes.dart:15:53 - implements_non_class
+  error - Classes can only extend other classes - test\mocks\mock_classes.dart:18:32 - extends_non_class
+  error - Classes and mixins can only implement other classes and mixins - test\mocks\mock_classes.dart:18:48 - implements_non_class
+  error - Missing concrete implementations of 'class Connectivity.checkConnectivity' and 'getter class Connectivity.onConnectivityChanged' - test\mocks\mock_classes.dart:21:7 - non_abstract_class_inherits_abstract_member
+  error - Classes can only extend other classes - test\mocks\mock_classes.dart:21:32 - extends_non_class
+  error - Missing concrete implementations of 'class ApiClient.getRecommendedWords', 'class ApiClient.getWordDefinition', 'class ApiClient.searchWords', and 'class ApiClient.translate' - test\mocks\mock_classes.dart:24:7 - non_abstract_class_inherits_abstract_member
+  error - Classes can only extend other classes - test\mocks\mock_classes.dart:24:29 - extends_non_class
+  error - Missing concrete implementations of 'abstract class TranslationRepository.addToFavorites', 'abstract class TranslationRepository.getFromCache', 'abstract class TranslationRepository.getHistory', 'abstract class TranslationRepository.removeFromFavorites', and 2 more - test\mocks\mock_classes.dart:27:7 - non_abstract_class_inherits_abstract_member
+  error - Classes can only extend other classes - test\mocks\mock_classes.dart:27:41 - extends_non_class
+  error - Missing concrete implementations of 'abstract class PendingTranslationRepository.addPending', 'abstract class PendingTranslationRepository.clearAll', 'abstract class PendingTranslationRepository.getPendingList', 'abstract class PendingTranslationRepository.getRetryableList', and 3 more - test\mocks\mock_classes.dart:30:7 - non_abstract_class_inherits_abstract_member
+  error - Classes can only extend other classes - test\mocks\mock_classes.dart:30:48 - extends_non_class
+  error - Classes can only extend other classes - test\mocks\mock_classes.dart:34:43 - extends_non_class
+  error - Undefined class 'Id' - test\mocks\mock_classes.dart:37:8 - undefined_class
+   info - The imported package 'hive' isn't a dependency of the importing package - test\unit\providers\hive_provider_test.dart:3:8 - depend_on_referenced_packages
+  error - Undefined name 'userPreferencesBoxProvider' - test\unit\providers\hive_provider_test.dart:34:40 - undefined_identifier
+  error - Undefined name 'appConfigBoxProvider' - test\unit\providers\hive_provider_test.dart:40:40 - undefined_identifier
+  error - Undefined name 'cacheBoxProvider' - test\unit\providers\hive_provider_test.dart:46:40 - undefined_identifier
+  error - Undefined name 'userPreferencesBoxProvider' - test\unit\providers\hive_provider_test.dart:52:42 - undefined_identifier
+  error - Undefined name 'appConfigBoxProvider' - test\unit\providers\hive_provider_test.dart:53:43 - undefined_identifier
+  error - Undefined name 'cacheBoxProvider' - test\unit\providers\hive_provider_test.dart:54:42 - undefined_identifier
+   info - The imported package 'mocktail' isn't a dependency of the importing package - test\unit\repositories\pending_translation_repository_test.dart:2:8 - depend_on_referenced_packages
+  error - Target of URI doesn't exist: 'package:mocktail/mocktail.dart' - test\unit\repositories\pending_translation_repository_test.dart:2:8 - uri_does_not_exist
+  error - The function 'when' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:23:9 - undefined_function
+  error - The function 'verify' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:30:9 - undefined_function
+  error - The function 'when' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:35:9 - undefined_function
+  error - The function 'when' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:46:9 - undefined_function
+  error - The function 'verify' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:52:9 - undefined_function
+  error - The function 'when' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:57:9 - undefined_function
+  error - The function 'verify' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:63:9 - undefined_function
+  error - The function 'when' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:68:9 - undefined_function
+  error - The function 'verify' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:75:9 - undefined_function
+  error - The function 'when' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:80:9 - undefined_function
+  error - The function 'when' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:91:9 - undefined_function
+  error - The function 'verify' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:97:9 - undefined_function
+  error - The function 'when' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:104:9 - undefined_function
+  error - The function 'when' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:117:9 - undefined_function
+  error - The function 'when' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:136:9 - undefined_function
+  error - The function 'when' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:138:9 - undefined_function
+  error - The function 'verify' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:145:9 - undefined_function
+  error - The function 'verify' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:146:9 - undefined_function
+  error - The function 'when' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:153:9 - undefined_function
+  error - The function 'when' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:167:9 - undefined_function
+  error - The function 'when' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:180:9 - undefined_function
+  error - The function 'verify' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:188:9 - undefined_function
+  error - The function 'when' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:195:9 - undefined_function
+  error - The function 'verify' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:201:9 - undefined_function
+  error - The function 'when' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:208:9 - undefined_function
+  error - The function 'when' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:210:9 - undefined_function
+  error - The function 'verify' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:217:9 - undefined_function
+  error - The function 'when' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:223:9 - undefined_function
+  error - The function 'verify' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:229:9 - undefined_function
+  error - The function 'when' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:234:9 - undefined_function
+  error - The function 'verify' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:240:9 - undefined_function
+  error - The function 'when' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:245:9 - undefined_function
+  error - The function 'verify' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:252:9 - undefined_function
+  error - The function 'when' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:257:9 - undefined_function
+  error - The function 'when' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:268:9 - undefined_function
+  error - The function 'verify' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:274:9 - undefined_function
+  error - The function 'when' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:281:9 - undefined_function
+  error - The function 'any' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:281:42 - undefined_function
+  error - The function 'any' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:281:49 - undefined_function
+  error - The function 'any' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:281:56 - undefined_function
+  error - The function 'verify' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:292:9 - undefined_function
+  error - The function 'any' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:292:44 - undefined_function
+  error - The function 'any' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:292:51 - undefined_function
+  error - The function 'any' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:292:58 - undefined_function
+  error - The function 'when' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:297:9 - undefined_function
+  error - The function 'verify' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:307:9 - undefined_function
+  error - The function 'when' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:312:9 - undefined_function
+  error - The function 'any' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:312:42 - undefined_function
+  error - The function 'any' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:312:49 - undefined_function
+  error - The function 'any' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:312:56 - undefined_function
+  error - The function 'when' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:314:9 - undefined_function
+  error - The function 'verify' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:321:9 - undefined_function
+  error - The function 'when' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:329:9 - undefined_function
+  error - The function 'when' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:340:9 - undefined_function
+  error - The function 'verify' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:346:9 - undefined_function
+  error - The function 'when' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:351:9 - undefined_function
+  error - The function 'when' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:362:9 - undefined_function
+  error - The function 'verify' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:368:9 - undefined_function
+  error - The function 'when' isn't defined - test\unit\repositories\pending_translation_repository_test.dart:373:9 - undefined_function
+   info - The imported package 'mocktail' isn't a dependency of the importing package - test\unit\services\network_provider_test.dart:2:8 - depend_on_referenced_packages
+  error - Target of URI doesn't exist: 'package:mocktail/mocktail.dart' - test\unit\services\network_provider_test.dart:2:8 - uri_does_not_exist
+  error - The function 'when' isn't defined - test\unit\services\network_provider_test.dart:31:9 - undefined_function
+  error - The function 'when' isn't defined - test\unit\services\network_provider_test.dart:42:9 - undefined_function
+  error - The function 'when' isn't defined - test\unit\services\network_provider_test.dart:53:9 - undefined_function
+  error - The function 'when' isn't defined - test\unit\services\network_provider_test.dart:110:9 - undefined_function
+  error - The function 'when' isn't defined - test\unit\services\network_provider_test.dart:162:9 - undefined_function
+
+flutter : 197 issues found. (ran in 15.2s)
+所在位置 行:1 字符: 1
++ flutter analyze 2>&1 | Out-File -FilePath errors.txt -Encoding utf8
++ ~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (197 issues found. (ran in 
+    15.2s):String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 

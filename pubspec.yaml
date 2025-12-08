@@ -1,36 +1,133 @@
 name: uyghur_translator
-description: 公益维吾尔语翻译App - iOS 17/18 Glass风格 + RTL支持
+description: "维汉双语翻译应用 - 支持文本翻译、语音输入、OCR识别，iOS Glass风格UI + RTL支持"
 publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.0.0 <4.0.0'
+  sdk: '>=3.2.6 <4.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  intl: ^0.20.2  # 国际化支持，与 flutter_localizations 兼容
-  cupertino_icons: ^1.0.6
+  
+  # 国际化
+  intl: ^0.20.2
+  
+  # UI
+  cupertino_icons: ^1.0.8
+  
+  # 状态管理
+  flutter_riverpod: ^2.6.1
+  
+  # 路由
+  go_router: ^13.0.0
+  
+  # 存储与数据管理
+  hive_flutter: ^1.1.0           # 高性能本地数据库
+  flutter_secure_storage: ^9.2.2 # 安全存储
+  path_provider: ^2.1.4          # 路径管理
+  http: ^1.5.0                   # HTTP 请求
+  shared_preferences: ^2.2.2     # 本地存储
+  
+  # 网络
+  dio: ^5.3.0                    # HTTP 客户端
+  connectivity_plus: ^5.0.0      # 网络连接监测
+  
+  # Firebase (可选)
+  firebase_core: ^2.24.0         # Firebase 核心
+  firebase_auth: ^4.14.0         # Firebase 认证
+  
+  # 文件与权限管理
+  file_picker: ^8.0.0+1           # 文件选择器
+  image_picker: ^1.1.2            # 图片选择器
+  permission_handler: ^11.3.1     # 权限管理
+  share_plus: ^7.2.0              # 分享功能
+  
+  # OCR 和多媒体
+  google_mlkit_text_recognition: ^0.13.0  # OCR 文本识别
+  
+  # 核心依赖
+  ffi: ^2.1.4                    # 原生FFI调用
+  flutter_animate: ^4.5.0        # 动画库
+  logger: ^2.0.0                 # 日志库
+  flutter_dotenv: ^5.1.0         # 环境变量
+  uuid: ^4.0.0                   # UUID 生成
+  
+  # 数据序列化
+  freezed_annotation: ^2.4.0     # Freezed 注解
+  json_annotation: ^4.8.1        # JSON 注解
+  
+  # Isar 数据库 (注意：3.1.0 与 AGP 8.6 有兼容性问题)
+  isar: ^3.1.0+1
+  isar_flutter_libs: ^3.1.0+1
+  
+  # 翻译
+  translator: ^1.0.0             # Google 翻译
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.0
+  
+  # 代码生成
+  build_runner: ^2.4.0
+  freezed: ^2.4.0
+  json_serializable: ^6.7.0
+  hive_generator: ^2.0.0
+  isar_generator: ^3.1.0+1
+  
+  # 测试
+  mocktail: ^1.0.0
 
 flutter:
   uses-material-design: true
   
+  # 字体配置
   fonts:
-    # 维吾尔语字体占位 - 需替换为实际字体文件
-    - family: NotoSansArabicUyghur
+    # === Alkatip 维吾尔语字体系列 ===
+    - family: Alkatip
       fonts:
-        - asset: assets/fonts/NotoSansArabic-Regular.ttf
-        - asset: assets/fonts/NotoSansArabic-Bold.ttf
-          weight: 700
+        - asset: assets/fonts/alkatip/Alkatip.ttf
+    
+    - family: AlkatipKona
+      fonts:
+        - asset: assets/fonts/alkatip/AlkatipKona.ttf
+    
+    - family: AlkatipTor
+      fonts:
+        - asset: assets/fonts/alkatip/AlkatipTor.ttf
+    
+    - family: AlkatipYumilaq
+      fonts:
+        - asset: assets/fonts/alkatip/AlkatipYumilaq.ttf
+    
+    - family: AlkatipNazik
+      fonts:
+        - asset: assets/fonts/alkatip/AlkatipNazik.ttf
+    
+    - family: AlkatipBasma
+      fonts:
+        - asset: assets/fonts/alkatip/AlkatipBasma.ttf
+    
+    - family: AlkatipTarixi
+      fonts:
+        - asset: assets/fonts/alkatip/AlkatipTarixi.ttf
+    
+    - family: AlkatipQol
+      fonts:
+        - asset: assets/fonts/alkatip/AlkatipQol.ttf
+    
+    - family: AlkatipKompyuter
+      fonts:
+        - asset: assets/fonts/alkatip/AlkatipKompyuter.ttf
+    
+    - family: AlkatipChong
+      fonts:
+        - asset: assets/fonts/alkatip/AlkatipChong.ttf
 
   assets:
     - assets/images/
     - assets/icons/
-
+    - assets/fonts/alkatip/

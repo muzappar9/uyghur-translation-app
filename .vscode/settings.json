@@ -1,6 +1,7 @@
 {
-  "dart.flutterSdkPath": "D:\\项目\\Development\\Flutter-SDK\\flutter",
-  "dart.sdkPath": "D:\\项目\\Development\\Flutter-SDK\\flutter\\bin\\cache\\dart-sdk",
+  "dart.flutterSdkPath": "D:\\projects\\Development\\Flutter-SDK\\flutter",
+  "dart.sdkPath": "D:\\projects\\Development\\Flutter-SDK\\flutter\\bin\\cache\\dart-sdk",
+  "dart.androidSdkPath": "D:\\projects\\Development\\Android-SDK",
   "dart.enableSdkFormatter": true,
   "[dart]": {
     "editor.formatOnSave": true,

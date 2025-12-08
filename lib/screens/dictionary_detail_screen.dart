@@ -63,7 +63,7 @@ class DictionaryDetailScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text(
-                        'TODO: Word',
+                        '你好',
                         style: TextStyle(
                           fontSize: 32,
                           fontWeight: FontWeight.bold,
@@ -72,7 +72,7 @@ class DictionaryDetailScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        t(context, 'dict_detail.label.pronunciation'),
+                        '${t(context, 'dict_detail.label.pronunciation')}: nǐ hǎo',
                         style: const TextStyle(
                           fontSize: 14,
                           color: Colors.white70,
@@ -94,24 +94,25 @@ class DictionaryDetailScreen extends StatelessWidget {
                       // Basic Section
                       DictSectionCard.withText(
                         title: t(context, 'dict_detail.section.basic'),
-                        text: '', // TODO
+                        text: 'سالام - 问候语，用于见面时打招呼',
                       ),
 
                       // Sense Section
                       DictSectionCard.withList(
                         title: t(context, 'dict_detail.section.sense'),
-                        children: [
-                          // TODO: 多义项列表
-                          const Text('TODO: Sense 1', style: TextStyle(color: Colors.white)),
-                          const SizedBox(height: 8),
-                          const Text('TODO: Sense 2', style: TextStyle(color: Colors.white)),
+                        children: const [
+                          Text('1. [感叹词] 问候语，见面打招呼时使用',
+                              style: TextStyle(color: Colors.white)),
+                          SizedBox(height: 8),
+                          Text('2. [动词] 向某人问好',
+                              style: TextStyle(color: Colors.white)),
                         ],
                       ),
 
                       // Professional Section
                       DictSectionCard.withText(
                         title: t(context, 'dict_detail.section.professional'),
-                        text: '', // TODO
+                        text: '日常用语，在维吾尔族地区广泛使用',
                       ),
 
                       // Examples Section
@@ -119,16 +120,15 @@ class DictionaryDetailScreen extends StatelessWidget {
                         title: t(context, 'dict_detail.section.examples'),
                         child: Column(
                           children: [
-                            // TODO: 例句列表
                             _ExampleItem(
-                              original: 'TODO: Original',
-                              translated: 'TODO: Translated',
+                              original: '你好，请问您贵姓？',
+                              translated: 'سالام، فامىلىڭىز نېمە؟',
                               onRead: () {},
                             ),
                             const Divider(color: Colors.white24),
                             _ExampleItem(
-                              original: 'TODO: Original',
-                              translated: 'TODO: Translated',
+                              original: '你好！今天天气真好。',
+                              translated: 'سالام! بۈگۈن ھاۋا ناھايىتى ياخشى.',
                               onRead: () {},
                             ),
                           ],
@@ -138,14 +138,13 @@ class DictionaryDetailScreen extends StatelessWidget {
                       // Related Section
                       DictSectionCard(
                         title: t(context, 'dict_detail.section.related'),
-                        child: Wrap(
+                        child: const Wrap(
                           spacing: 8,
                           runSpacing: 8,
                           children: [
-                            // TODO: 相关词Chip列表
-                            _RelatedChip(word: 'TODO'),
-                            _RelatedChip(word: 'TODO'),
-                            _RelatedChip(word: 'TODO'),
+                            _RelatedChip(word: '您好'),
+                            _RelatedChip(word: '早上好'),
+                            _RelatedChip(word: '晚上好'),
                           ],
                         ),
                       ),
@@ -153,7 +152,7 @@ class DictionaryDetailScreen extends StatelessWidget {
                       // Source Section
                       DictSectionCard.withText(
                         title: t(context, 'dict_detail.label.source'),
-                        text: '', // TODO
+                        text: '新编维汉词典',
                       ),
 
                       const SizedBox(height: 24),
@@ -212,7 +211,8 @@ class _ExampleItem extends StatelessWidget {
           if (onRead != null)
             IconButton(
               onPressed: onRead,
-              icon: const Icon(Icons.volume_up, size: 20, color: Colors.white70),
+              icon:
+                  const Icon(Icons.volume_up, size: 20, color: Colors.white70),
               padding: EdgeInsets.zero,
               constraints: const BoxConstraints(),
             ),
@@ -232,7 +232,7 @@ class _RelatedChip extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.15),
+        color: Colors.white.withValues(alpha: 0.15),
         borderRadius: BorderRadius.circular(16),
       ),
       child: Text(

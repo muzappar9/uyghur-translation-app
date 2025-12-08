@@ -45,7 +45,7 @@ class ChatBubble extends StatelessWidget {
           borderRadius: 20,
           backgroundColor: effectiveIsLeft
               ? (isDark ? const Color(0x4D000000) : const Color(0x80FFFFFF))
-              : primaryColor.withOpacity(0.2),
+              : primaryColor.withValues(alpha: 0.2),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -55,7 +55,7 @@ class ChatBubble extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Text(
-                      originalText.isEmpty ? 'TODO: Original Text' : originalText,
+                      originalText.isNotEmpty ? originalText : '...',
                       style: TextStyle(
                         fontSize: 14,
                         color: isDark ? Colors.white70 : Colors.black54,
@@ -81,7 +81,7 @@ class ChatBubble extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Text(
-                      translatedText.isEmpty ? 'TODO: Translated Text' : translatedText,
+                      translatedText.isNotEmpty ? translatedText : '...',
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,

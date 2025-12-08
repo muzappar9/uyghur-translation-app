@@ -39,7 +39,7 @@ class ModeSegmentedControl extends StatelessWidget {
             color: isDark ? const Color(0x33000000) : const Color(0x4DFFFFFF),
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
-              color: isDark ? Colors.white.withOpacity(0.1) : Colors.white.withOpacity(0.3),
+              color: isDark ? Colors.white.withValues(alpha: 0.1) : Colors.white.withValues(alpha: 0.3),
             ),
           ),
           child: Row(
@@ -96,13 +96,13 @@ class _ModeTab extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
           decoration: BoxDecoration(
             color: isSelected
-                ? (isDark ? Colors.white.withOpacity(0.15) : Colors.white.withOpacity(0.8))
+                ? (isDark ? Colors.white.withValues(alpha: 0.15) : Colors.white.withValues(alpha: 0.8))
                 : Colors.transparent,
             borderRadius: BorderRadius.circular(12),
             boxShadow: isSelected
                 ? [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
+                      color: Colors.black.withValues(alpha: 0.1),
                       blurRadius: 4,
                       offset: const Offset(0, 2),
                     ),

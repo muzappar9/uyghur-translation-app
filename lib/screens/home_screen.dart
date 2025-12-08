@@ -4,8 +4,11 @@ import '../widgets/glass_button.dart';
 import '../widgets/language_switch_bar.dart';
 import '../widgets/mode_segmented_control.dart';
 import '../i18n/localizations.dart';
+import '../core/animations/animations.dart';
+import '../core/performance/performance_monitor.dart';
 
 /// HomeScreen: 主页
+/// 升级: Stage 19 添加动画和微交互
 /// AppBar + LanguageSwitchBar + ModeSegmentedControl + TextField + 底部按钮行
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -14,19 +17,59 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   final TextEditingController _textController = TextEditingController();
+  final FocusNode _focusNode = FocusNode();
+  String _sourceLanguage = 'zh';
+  String _targetLanguage = 'ug';
   int _selectedMode = 0;
+  bool _isFocused = false;
+  int _currentNavIndex = 0;
+  final _perfMonitor = PerformanceMonitor();
+
+  // 动画控制器
+  late AnimationController _fadeController;
+  late Animation<double> _fadeAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _perfMonitor.startTimer('home_screen_init');
+    _focusNode.addListener(_onFocusChange);
+
+    // 初始化页面淡入动画
+    _fadeController = AnimationController(
+      vsync: this,
+      duration: AppAnimationDuration.medium,
+    );
+    _fadeAnimation = CurvedAnimation(
+      parent: _fadeController,
+      curve: Curves.easeOut,
+    );
+    _fadeController.forward();
+    _perfMonitor.endTimer('home_screen_init');
+  }
+
+  void _onFocusChange() {
+    setState(() => _isFocused = _focusNode.hasFocus);
+  }
 
   @override
   void dispose() {
     _textController.dispose();
+    _focusNode.dispose();
+    _fadeController.dispose();
     super.dispose();
   }
 
   void _onTranslate() {
-    // TODO: 实现翻译逻辑
-    Navigator.pushNamed(context, '/translate_result');
+    if (_textController.text.isNotEmpty) {
+      Navigator.pushNamed(context, '/translate_result', arguments: {
+        'text': _textController.text,
+        'source': _sourceLanguage,
+        'target': _targetLanguage,
+      });
+    }
   }
 
   void _onMicTap() {
@@ -38,7 +81,11 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _onSwapLanguages() {
-    // TODO: 实现语言交换
+    setState(() {
+      final temp = _sourceLanguage;
+      _sourceLanguage = _targetLanguage;
+      _targetLanguage = temp;
+    });
   }
 
   @override
@@ -82,7 +129,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       icon: const Icon(Icons.history, color: Colors.white),
                     ),
                     IconButton(
-                      onPressed: () => Navigator.pushNamed(context, '/settings'),
+                      onPressed: () =>
+                          Navigator.pushNamed(context, '/settings'),
                       icon: const Icon(Icons.settings, color: Colors.white),
                     ),
                   ],
@@ -93,8 +141,8 @@ class _HomeScreenState extends State<HomeScreen> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: LanguageSwitchBar(
-                  sourceLanguage: '', // TODO
-                  targetLanguage: '', // TODO
+                  sourceLanguage: _sourceLanguage,
+                  targetLanguage: _targetLanguage,
                   onSwapTap: _onSwapLanguages,
                 ),
               ),
@@ -116,28 +164,36 @@ class _HomeScreenState extends State<HomeScreen> {
 
               const SizedBox(height: 24),
 
-              // Main Input Area
+              // Main Input Area with Focus Animation
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: GlassCard(
-                    blurSigma: 15,
-                    padding: const EdgeInsets.all(16),
-                    child: TextField(
-                      controller: _textController,
-                      maxLines: null,
-                      expands: true,
-                      textAlignVertical: TextAlignVertical.top,
-                      decoration: InputDecoration(
-                        hintText: t(context, 'home.input.placeholder'),
-                        hintStyle: TextStyle(
-                          color: isDark ? Colors.white54 : Colors.black38,
+                  child: FadeTransition(
+                    opacity: _fadeAnimation,
+                    child: AnimatedInputContainer(
+                      isFocused: _isFocused,
+                      focusColor: Colors.white,
+                      child: GlassCard(
+                        blurSigma: 15,
+                        padding: const EdgeInsets.all(16),
+                        child: TextField(
+                          controller: _textController,
+                          focusNode: _focusNode,
+                          maxLines: null,
+                          expands: true,
+                          textAlignVertical: TextAlignVertical.top,
+                          decoration: InputDecoration(
+                            hintText: t(context, 'home.input.placeholder'),
+                            hintStyle: TextStyle(
+                              color: isDark ? Colors.white54 : Colors.black38,
+                            ),
+                            border: InputBorder.none,
+                          ),
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: isDark ? Colors.white : Colors.black87,
+                          ),
                         ),
-                        border: InputBorder.none,
-                      ),
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: isDark ? Colors.white : Colors.black87,
                       ),
                     ),
                   ),
@@ -146,42 +202,54 @@ class _HomeScreenState extends State<HomeScreen> {
 
               const SizedBox(height: 16),
 
-              // Bottom Action Buttons
+              // Bottom Action Buttons with Staggered Animation
               Padding(
                 padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
                 child: Row(
                   children: [
                     Expanded(
-                      child: GlassButton(
-                        text: t(context, 'home.button.translate'),
-                        icon: Icons.translate,
-                        onPressed: _onTranslate,
-                        textColor: Colors.white,
+                      child: StaggeredListItem(
+                        index: 0,
+                        direction: Axis.horizontal,
+                        child: GlassButton(
+                          text: t(context, 'home.button.translate'),
+                          icon: Icons.translate,
+                          onPressed: _onTranslate,
+                          textColor: Colors.white,
+                        ),
                       ),
                     ),
                     const SizedBox(width: 12),
-                    GlassButton(
-                      text: '',
-                      icon: Icons.mic,
-                      iconOnly: true,
-                      onPressed: _onMicTap,
-                      textColor: Colors.white,
-                      padding: const EdgeInsets.all(14),
+                    StaggeredListItem(
+                      index: 1,
+                      direction: Axis.horizontal,
+                      child: GlassButton(
+                        text: '',
+                        icon: Icons.mic,
+                        iconOnly: true,
+                        onPressed: _onMicTap,
+                        textColor: Colors.white,
+                        padding: const EdgeInsets.all(14),
+                      ),
                     ),
                     const SizedBox(width: 12),
-                    GlassButton(
-                      text: '',
-                      icon: Icons.camera_alt,
-                      iconOnly: true,
-                      onPressed: _onCameraTap,
-                      textColor: Colors.white,
-                      padding: const EdgeInsets.all(14),
+                    StaggeredListItem(
+                      index: 2,
+                      direction: Axis.horizontal,
+                      child: GlassButton(
+                        text: '',
+                        icon: Icons.camera_alt,
+                        iconOnly: true,
+                        onPressed: _onCameraTap,
+                        textColor: Colors.white,
+                        padding: const EdgeInsets.all(14),
+                      ),
                     ),
                   ],
                 ),
               ),
 
-              // Bottom Navigation
+              // Bottom Navigation with Animation
               GlassCard(
                 borderRadius: 0,
                 blurSigma: 20,
@@ -189,22 +257,34 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    _BottomNavItem(
+                    AnimatedBottomNavItem(
                       icon: Icons.home,
-                      isActive: true,
-                      onTap: () {},
+                      isActive: _currentNavIndex == 0,
+                      onTap: () => setState(() => _currentNavIndex = 0),
                     ),
-                    _BottomNavItem(
+                    AnimatedBottomNavItem(
                       icon: Icons.chat,
-                      onTap: () => Navigator.pushNamed(context, '/conversation'),
+                      isActive: _currentNavIndex == 1,
+                      onTap: () {
+                        setState(() => _currentNavIndex = 1);
+                        Navigator.pushNamed(context, '/conversation');
+                      },
                     ),
-                    _BottomNavItem(
+                    AnimatedBottomNavItem(
                       icon: Icons.book,
-                      onTap: () => Navigator.pushNamed(context, '/dictionary'),
+                      isActive: _currentNavIndex == 2,
+                      onTap: () {
+                        setState(() => _currentNavIndex = 2);
+                        Navigator.pushNamed(context, '/dictionary');
+                      },
                     ),
-                    _BottomNavItem(
+                    AnimatedBottomNavItem(
                       icon: Icons.person,
-                      onTap: () => Navigator.pushNamed(context, '/settings'),
+                      isActive: _currentNavIndex == 3,
+                      onTap: () {
+                        setState(() => _currentNavIndex = 3);
+                        Navigator.pushNamed(context, '/settings');
+                      },
                     ),
                   ],
                 ),
@@ -217,26 +297,4 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-class _BottomNavItem extends StatelessWidget {
-  final IconData icon;
-  final bool isActive;
-  final VoidCallback? onTap;
-
-  const _BottomNavItem({
-    required this.icon,
-    this.isActive = false,
-    this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: onTap,
-      icon: Icon(
-        icon,
-        color: isActive ? Colors.white : Colors.white60,
-        size: 26,
-      ),
-    );
-  }
-}
+// _BottomNavItem class removed - using AnimatedBottomNavItem instead

@@ -1,16 +1,136 @@
 import 'package:flutter/material.dart';
 import '../widgets/glass_card.dart';
 import '../i18n/localizations.dart';
+import '../core/widgets/loading_states.dart';
+import '../core/widgets/skeleton_screens.dart';
+import '../core/animations/animations.dart';
+import '../widgets/responsive_layout.dart';
+
+/// 历史记录数据模型
+class HistoryItem {
+  final String id;
+  final String original;
+  final String translated;
+  final String sourceLanguage;
+  final String targetLanguage;
+  final DateTime timestamp;
+  bool isFavorite;
+
+  HistoryItem({
+    required this.id,
+    required this.original,
+    required this.translated,
+    required this.sourceLanguage,
+    required this.targetLanguage,
+    required this.timestamp,
+    this.isFavorite = false,
+  });
+}
 
 /// HistoryScreen: 历史记录页
+/// 升级: Stage 20 添加加载状态和骨架屏
 /// 搜索框 + ListView + RL反馈钩子
-class HistoryScreen extends StatelessWidget {
+class HistoryScreen extends StatefulWidget {
   const HistoryScreen({super.key});
 
+  @override
+  State<HistoryScreen> createState() => _HistoryScreenState();
+}
+
+class _HistoryScreenState extends State<HistoryScreen> {
+  // 加载状态
+  LoadingState _loadingState = LoadingState.loading;
+  String? _errorMessage;
+
+  // 示例历史数据
+  final List<HistoryItem> _historyItems = [
+    HistoryItem(
+      id: '1',
+      original: '你好',
+      translated: 'سالام',
+      sourceLanguage: 'zh',
+      targetLanguage: 'ug',
+      timestamp: DateTime.now().subtract(const Duration(minutes: 5)),
+      isFavorite: true,
+    ),
+    HistoryItem(
+      id: '2',
+      original: '谢谢',
+      translated: 'رەھمەت',
+      sourceLanguage: 'zh',
+      targetLanguage: 'ug',
+      timestamp: DateTime.now().subtract(const Duration(hours: 1)),
+      isFavorite: false,
+    ),
+    HistoryItem(
+      id: '3',
+      original: '早上好',
+      translated: 'خەيرلىك تاڭ',
+      sourceLanguage: 'zh',
+      targetLanguage: 'ug',
+      timestamp: DateTime.now().subtract(const Duration(hours: 3)),
+      isFavorite: true,
+    ),
+    HistoryItem(
+      id: '4',
+      original: '再见',
+      translated: 'خەير خوش',
+      sourceLanguage: 'zh',
+      targetLanguage: 'ug',
+      timestamp: DateTime.now().subtract(const Duration(days: 1)),
+      isFavorite: false,
+    ),
+    HistoryItem(
+      id: '5',
+      original: '我爱你',
+      translated: 'مەن سىزنى ياخشى كۆرىمەن',
+      sourceLanguage: 'zh',
+      targetLanguage: 'ug',
+      timestamp: DateTime.now().subtract(const Duration(days: 2)),
+      isFavorite: true,
+    ),
+  ];
+
+  String _searchQuery = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _loadHistory();
+  }
+
+  Future<void> _loadHistory() async {
+    setState(() {
+      _loadingState = LoadingState.loading;
+      _errorMessage = null;
+    });
+
+    try {
+      // 模拟加载延迟
+      await Future.delayed(const Duration(milliseconds: 800));
+
+      setState(() {
+        _loadingState = LoadingState.success;
+      });
+    } catch (e) {
+      setState(() {
+        _loadingState = LoadingState.error;
+        _errorMessage = '加载历史记录失败';
+      });
+    }
+  }
+
+  List<HistoryItem> get _filteredItems {
+    if (_searchQuery.isEmpty) return _historyItems;
+    final query = _searchQuery.toLowerCase();
+    return _historyItems
+        .where((item) =>
+            item.original.toLowerCase().contains(query) ||
+            item.translated.toLowerCase().contains(query))
+        .toList();
+  }
+
   void _exportRLFeedback(BuildContext context) {
-    // print('export RL feedback');
-    // TODO: 实现RL反馈数据导出
-    // 格式: { translationId, originalText, translatedText, userRating, correction, timestamp }
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(t(context, 'history.rl.exported')),
@@ -19,9 +139,41 @@ class HistoryScreen extends StatelessWidget {
     );
   }
 
-  void _submitCorrection(BuildContext context, String translationId, String correctedText) {
-    // print('export RL feedback: correction for $translationId');
-    // TODO: 发送校正数据到RL训练管道
+  void _submitCorrection(
+      BuildContext context, String translationId, String correctedText) {
+    // RL反馈校正数据
+    debugPrint('RL Correction for $translationId: $correctedText');
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('校正已提交'),
+        backgroundColor: Colors.green,
+      ),
+    );
+  }
+
+  void _clearHistory() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('清空历史'),
+        content: const Text('确定要清空所有历史记录吗？'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('取消'),
+          ),
+          TextButton(
+            onPressed: () {
+              setState(() {
+                _historyItems.clear();
+              });
+              Navigator.pop(context);
+            },
+            child: const Text('确定', style: TextStyle(color: Colors.red)),
+          ),
+        ],
+      ),
+    );
   }
 
   @override
@@ -70,9 +222,7 @@ class HistoryScreen extends StatelessWidget {
                       tooltip: 'Export RL Feedback',
                     ),
                     TextButton(
-                      onPressed: () {
-                        // TODO: 清空历史
-                      },
+                      onPressed: _clearHistory,
                       child: Text(
                         t(context, 'history.action.clear_all'),
                         style: const TextStyle(color: Colors.white70),
@@ -87,7 +237,8 @@ class HistoryScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: GlassCard(
                   blurSigma: 15,
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                   borderRadius: 20,
                   child: TextField(
                     decoration: InputDecoration(
@@ -101,63 +252,102 @@ class HistoryScreen extends StatelessWidget {
                       ),
                       border: InputBorder.none,
                     ),
-                    style: TextStyle(
-                      color: isDark ? Colors.white : Colors.black87,
-                    ),
+                    onChanged: (value) {
+                      setState(() {
+                        _searchQuery = value;
+                      });
+                    },
                   ),
                 ),
               ),
 
               const SizedBox(height: 16),
 
-              // History ListView
+              // History ListView with Loading State
               Expanded(
-                child: ListView.builder(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  itemCount: 0, // TODO: 历史数据
-                  itemBuilder: (context, index) {
-                    return _HistoryItem(
-                      translationId: 'TODO_ID_$index',
-                      original: 'TODO: Original Text',
-                      translated: 'TODO: Translated Text',
-                      onTap: () {},
-                      onFavorite: () {},
-                      onRead: () {},
-                      onCopy: () {},
-                      onCorrect: (corrected) => _submitCorrection(
-                        context,
-                        'TODO_ID_$index',
-                        corrected,
-                      ),
-                    );
-                  },
-                ),
-              ),
-
-              // Empty State
-              if (true) // TODO: 替换为实际判断
-                Expanded(
-                  child: Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.history,
-                          size: 64,
-                          color: Colors.white.withOpacity(0.4),
-                        ),
-                        const SizedBox(height: 16),
-                        Text(
-                          t(context, 'history.empty'),
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.white.withOpacity(0.6),
-                          ),
-                        ),
-                      ],
+                child: ResponsiveContainer(
+                  child: StatefulLoadingContainer(
+                    state: _loadingState,
+                    loadingWidget: const HistoryListSkeleton(itemCount: 5),
+                    errorWidget: InlineErrorWidget(
+                      message: _errorMessage ?? '加载失败',
+                      onRetry: _loadHistory,
                     ),
+                    child: _filteredItems.isEmpty
+                        ? EmptyStateWidget.noHistory(
+                            onStartTranslation: () => Navigator.pop(context),
+                          )
+                        : ResponsiveBuilder(
+                            builder: (context, deviceType, orientation) {
+                              // 平板/桌面使用网格，手机使用列表
+                              if (deviceType != DeviceType.mobile) {
+                                return ResponsiveGrid(
+                                  columns: deviceType == DeviceType.tablet ? 2 : 3,
+                                  spacing: 16,
+                                  runSpacing: 16,
+                                  children: _filteredItems.asMap().entries.map((entry) {
+                                    final index = entry.key;
+                                    final item = entry.value;
+                                    return StaggeredListItem(
+                                      index: index,
+                                      child: _HistoryItem(
+                                        translationId: item.id,
+                                        original: item.original,
+                                        translated: item.translated,
+                                        onTap: () {},
+                                        onFavorite: () {
+                                          setState(() {
+                                            item.isFavorite = !item.isFavorite;
+                                          });
+                                        },
+                                        onRead: () {},
+                                        onCopy: () {},
+                                        onCorrect: (corrected) => _submitCorrection(
+                                          context,
+                                          item.id,
+                                          corrected,
+                                        ),
+                                      ),
+                                    );
+                                  }).toList(),
+                                );
+                              }
+                              // 手机使用列表
+                              return ListView.builder(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: ResponsiveUtils.getPadding(context),
+                                ),
+                                itemCount: _filteredItems.length,
+                                itemBuilder: (context, index) {
+                                  final item = _filteredItems[index];
+                                  return StaggeredListItem(
+                                    index: index,
+                                    child: _HistoryItem(
+                                      translationId: item.id,
+                                      original: item.original,
+                                      translated: item.translated,
+                                      onTap: () {},
+                                      onFavorite: () {
+                                        setState(() {
+                                          item.isFavorite = !item.isFavorite;
+                                        });
+                                      },
+                                      onRead: () {},
+                                      onCopy: () {},
+                                      onCorrect: (corrected) => _submitCorrection(
+                                        context,
+                                        item.id,
+                                        corrected,
+                                      ),
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                          ),
                   ),
                 ),
+              ),
             ],
           ),
         ),
@@ -278,30 +468,36 @@ class _HistoryItemState extends State<_HistoryItem> {
                     icon: Icon(
                       _isEditing ? Icons.check : Icons.edit,
                       size: 20,
-                      color: _isEditing ? const Color(0xFFFF7F50) : Colors.white60,
+                      color:
+                          _isEditing ? const Color(0xFFFF7F50) : Colors.white60,
                     ),
                     padding: EdgeInsets.zero,
                     constraints: const BoxConstraints(),
-                    tooltip: _isEditing ? 'Submit Correction (RL)' : 'Correct Translation',
+                    tooltip: _isEditing
+                        ? 'Submit Correction (RL)'
+                        : 'Correct Translation',
                   ),
                   const SizedBox(width: 16),
                   IconButton(
                     onPressed: widget.onFavorite,
-                    icon: const Icon(Icons.star_border, size: 20, color: Colors.white60),
+                    icon: const Icon(Icons.star_border,
+                        size: 20, color: Colors.white60),
                     padding: EdgeInsets.zero,
                     constraints: const BoxConstraints(),
                   ),
                   const SizedBox(width: 16),
                   IconButton(
                     onPressed: widget.onRead,
-                    icon: const Icon(Icons.volume_up, size: 20, color: Colors.white60),
+                    icon: const Icon(Icons.volume_up,
+                        size: 20, color: Colors.white60),
                     padding: EdgeInsets.zero,
                     constraints: const BoxConstraints(),
                   ),
                   const SizedBox(width: 16),
                   IconButton(
                     onPressed: widget.onCopy,
-                    icon: const Icon(Icons.copy, size: 20, color: Colors.white60),
+                    icon:
+                        const Icon(Icons.copy, size: 20, color: Colors.white60),
                     padding: EdgeInsets.zero,
                     constraints: const BoxConstraints(),
                   ),

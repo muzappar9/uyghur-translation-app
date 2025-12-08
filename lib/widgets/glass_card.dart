@@ -40,8 +40,8 @@ class GlassCard extends StatelessWidget {
       begin: Alignment.topLeft,
       end: Alignment.bottomRight,
       colors: [
-        const Color(0xFFFF7F50).withOpacity(0.15), // Coral 15%
-        Colors.white.withOpacity(isDark ? 0.05 : 0.3),
+        const Color(0xFFFF7F50).withValues(alpha: 0.15), // Coral 15%
+        Colors.white.withValues(alpha: isDark ? 0.05 : 0.3),
       ],
     );
 
@@ -64,13 +64,13 @@ class GlassCard extends StatelessWidget {
               border: border ??
                   Border.all(
                     color: isDark
-                        ? Colors.white.withOpacity(0.15)
-                        : Colors.white.withOpacity(0.5),
+                        ? Colors.white.withValues(alpha: 0.15)
+                        : Colors.white.withValues(alpha: 0.5),
                     width: 0.5,
                   ),
               boxShadow: [
                 BoxShadow(
-                  color: const Color(0xFFFF7F50).withOpacity(0.05),
+                  color: const Color(0xFFFF7F50).withValues(alpha: 0.05),
                   blurRadius: 20,
                   offset: const Offset(0, 4),
                 ),

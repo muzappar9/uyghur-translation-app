@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../widgets/glass_card.dart';
 import '../widgets/glass_button.dart';
 import '../widgets/chat_bubble.dart';
 import '../i18n/localizations.dart';

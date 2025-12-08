@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../widgets/glass_card.dart';
 import '../widgets/glass_button.dart';
+import '../widgets/voice_button.dart';
 import '../i18n/localizations.dart';
 
 /// VoiceInputScreen: 语音输入页
-/// 添加AnimatedBuilder麦克风波纹动画 (scale 1.0→1.5, duration 500ms)
+/// 使用 VoiceButton 和 VoiceWaveform 组件，带麦克风波纹动画
 class VoiceInputScreen extends StatefulWidget {
   const VoiceInputScreen({super.key});
 
@@ -14,29 +16,18 @@ class VoiceInputScreen extends StatefulWidget {
 
 class _VoiceInputScreenState extends State<VoiceInputScreen>
     with TickerProviderStateMixin {
-  late AnimationController _scaleController;
-  late Animation<double> _scaleAnimation;
-
   late AnimationController _rippleController1;
   late AnimationController _rippleController2;
   late AnimationController _rippleController3;
-
-  late AnimationController _pulseController;
-  late Animation<double> _pulseAnimation;
+  late AnimationController _waveformController;
 
   bool _isListening = false;
+  String _recognizedText = '';
+  String _partialText = '';
 
   @override
   void initState() {
     super.initState();
-
-    _scaleController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 500),
-    );
-    _scaleAnimation = Tween<double>(begin: 1.0, end: 1.5).animate(
-      CurvedAnimation(parent: _scaleController, curve: Curves.easeInOut),
-    );
 
     _rippleController1 = AnimationController(
       vsync: this,
@@ -50,30 +41,22 @@ class _VoiceInputScreenState extends State<VoiceInputScreen>
       vsync: this,
       duration: const Duration(milliseconds: 1500),
     );
-
-    _pulseController = AnimationController(
+    _waveformController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 800),
-    );
-    _pulseAnimation = Tween<double>(begin: 0.3, end: 0.8).animate(
-      CurvedAnimation(parent: _pulseController, curve: Curves.easeInOut),
+      duration: const Duration(milliseconds: 100),
     );
   }
 
   @override
   void dispose() {
-    _scaleController.dispose();
     _rippleController1.dispose();
     _rippleController2.dispose();
     _rippleController3.dispose();
-    _pulseController.dispose();
+    _waveformController.dispose();
     super.dispose();
   }
 
   void _startAnimations() {
-    _scaleController.repeat(reverse: true);
-    _pulseController.repeat(reverse: true);
-
     // 波纹错开启动
     _rippleController1.repeat();
     Future.delayed(const Duration(milliseconds: 500), () {
@@ -85,10 +68,6 @@ class _VoiceInputScreenState extends State<VoiceInputScreen>
   }
 
   void _stopAnimations() {
-    _scaleController.stop();
-    _scaleController.reset();
-    _pulseController.stop();
-    _pulseController.reset();
     _rippleController1.stop();
     _rippleController1.reset();
     _rippleController2.stop();
@@ -98,16 +77,87 @@ class _VoiceInputScreenState extends State<VoiceInputScreen>
   }
 
   void _toggleListening() {
+    HapticFeedback.mediumImpact();
+
     setState(() {
       _isListening = !_isListening;
+      if (_isListening) {
+        _partialText = '';
+      }
     });
 
     if (_isListening) {
       _startAnimations();
+      // 模拟语音识别过程
+      _simulateSpeechRecognition();
     } else {
       _stopAnimations();
+      // 完成识别
+      if (_partialText.isNotEmpty) {
+        setState(() {
+          _recognizedText = _partialText;
+        });
+      }
     }
-    // TODO: 实现语音识别
+  }
+
+  void _simulateSpeechRecognition() {
+    final phrases = ['你好', '你好，', '你好，请问', '你好，请问有什么', '你好，请问有什么可以帮您？'];
+    int index = 0;
+
+    void updateText() {
+      if (!mounted || !_isListening || index >= phrases.length) return;
+
+      Future.delayed(const Duration(milliseconds: 600), () {
+        if (mounted && _isListening) {
+          setState(() {
+            _partialText = phrases[index];
+          });
+          index++;
+          if (index < phrases.length) {
+            updateText();
+          } else {
+            // 自动停止
+            Future.delayed(const Duration(milliseconds: 500), () {
+              if (mounted && _isListening) {
+                _toggleListening();
+              }
+            });
+          }
+        }
+      });
+    }
+
+    updateText();
+  }
+
+  void _clearText() {
+    HapticFeedback.lightImpact();
+    setState(() {
+      _recognizedText = '';
+      _partialText = '';
+    });
+  }
+
+  void _copyText() {
+    if (_recognizedText.isNotEmpty) {
+      Clipboard.setData(ClipboardData(text: _recognizedText));
+      HapticFeedback.lightImpact();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(t(context, 'common.copied')),
+          backgroundColor: const Color(0xFFFF7F50),
+          duration: const Duration(seconds: 1),
+        ),
+      );
+    }
+  }
+
+  void _useForTranslation() {
+    if (_recognizedText.isNotEmpty) {
+      HapticFeedback.mediumImpact();
+      Navigator.pop(context, _recognizedText);
+    }
   }
 
   @override
@@ -148,20 +198,42 @@ class _VoiceInputScreenState extends State<VoiceInputScreen>
                         color: Colors.white,
                       ),
                     ),
+                    const Spacer(),
+                    if (_recognizedText.isNotEmpty)
+                      IconButton(
+                        onPressed: _clearText,
+                        icon: const Icon(Icons.refresh, color: Colors.white),
+                        tooltip: t(context, 'common.clear'),
+                      ),
                   ],
                 ),
               ),
 
               const Spacer(),
 
-              // Status Text
+              // Status Text with animation
               AnimatedSwitcher(
                 duration: const Duration(milliseconds: 300),
+                transitionBuilder: (child, animation) {
+                  return FadeTransition(
+                    opacity: animation,
+                    child: SlideTransition(
+                      position: Tween<Offset>(
+                        begin: const Offset(0, -0.5),
+                        end: Offset.zero,
+                      ).animate(animation),
+                      child: child,
+                    ),
+                  );
+                },
                 child: Text(
                   _isListening
                       ? t(context, 'voice.status.listening')
-                      : t(context, 'voice.status.ready'),
-                  key: ValueKey(_isListening),
+                      : _recognizedText.isNotEmpty
+                          ? t(context, 'voice.status.complete')
+                          : t(context, 'voice.status.ready'),
+                  key:
+                      ValueKey('${_isListening}_${_recognizedText.isNotEmpty}'),
                   style: const TextStyle(
                     fontSize: 18,
                     color: Colors.white,
@@ -170,8 +242,26 @@ class _VoiceInputScreenState extends State<VoiceInputScreen>
                 ),
               ),
 
-              const SizedBox(height: 40),
+              const SizedBox(height: 24),
 
+              // Waveform visualization when listening
+              AnimatedContainer(
+                duration: const Duration(milliseconds: 300),
+                height: _isListening ? 60 : 0,
+                child: _isListening
+                    ? VoiceWaveform(
+                        barCount: 20,
+                        color: Colors.white,
+                        height: 40,
+                        barWidth: 4,
+                        isActive: _isListening,
+                      )
+                    : const SizedBox.shrink(),
+              ),
+
+              const SizedBox(height: 24),
+
+              // Main Voice Button with ripples
               SizedBox(
                 width: 200,
                 height: 200,
@@ -202,70 +292,34 @@ class _VoiceInputScreenState extends State<VoiceInputScreen>
                           return _buildRipple(_rippleController3.value, 140);
                         },
                       ),
-                    // 主麦克风按钮
-                    AnimatedBuilder(
-                      animation: _scaleAnimation,
-                      builder: (context, child) {
-                        final scale =
-                            _isListening ? _scaleAnimation.value : 1.0;
-                        return Transform.scale(
-                          scale: scale * 0.7 + 0.3, // 限制缩放范围 0.3-1.05
-                          child: AnimatedBuilder(
-                            animation: _pulseAnimation,
-                            builder: (context, child) {
-                              return Container(
-                                width: 120,
-                                height: 120,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Colors.white.withOpacity(0.25),
-                                  boxShadow: _isListening
-                                      ? [
-                                          BoxShadow(
-                                            color: Colors.white.withOpacity(
-                                              _pulseAnimation.value,
-                                            ),
-                                            blurRadius: 30,
-                                            spreadRadius: 5,
-                                          ),
-                                        ]
-                                      : null,
-                                ),
-                                child: Material(
-                                  color: Colors.transparent,
-                                  child: InkWell(
-                                    onTap: _toggleListening,
-                                    borderRadius: BorderRadius.circular(60),
-                                    child: Center(
-                                      child: Icon(
-                                        _isListening
-                                            ? Icons.mic
-                                            : Icons.mic_none,
-                                        size: 50,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              );
-                            },
-                          ),
-                        );
-                      },
+                    // 主麦克风按钮 - 使用 VoiceButton
+                    VoiceButton(
+                      size: 120,
+                      isListening: _isListening,
+                      onTap: _toggleListening,
+                      activeColor: Colors.white,
+                      inactiveColor: Colors.white.withValues(alpha: 0.7),
                     ),
                   ],
                 ),
               ),
 
-              const SizedBox(height: 40),
+              const SizedBox(height: 32),
 
-              Text(
-                _isListening
-                    ? t(context, 'voice.hint.speak')
-                    : t(context, 'voice.hint.tap'),
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Colors.white.withOpacity(0.7),
+              // Hint text
+              AnimatedSwitcher(
+                duration: const Duration(milliseconds: 200),
+                child: Text(
+                  _isListening
+                      ? t(context, 'voice.hint.speak')
+                      : _recognizedText.isEmpty
+                          ? t(context, 'voice.hint.tap')
+                          : t(context, 'voice.hint.tapAgain'),
+                  key: ValueKey('hint_$_isListening${_recognizedText.isEmpty}'),
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.white.withValues(alpha: 0.7),
+                  ),
                 ),
               ),
 
@@ -280,14 +334,33 @@ class _VoiceInputScreenState extends State<VoiceInputScreen>
                   child: SizedBox(
                     height: 100,
                     width: double.infinity,
-                    child: Center(
-                      child: Text(
-                        t(context, 'voice.result.placeholder'),
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.white.withOpacity(0.8),
+                    child: SingleChildScrollView(
+                      child: AnimatedSwitcher(
+                        duration: const Duration(milliseconds: 150),
+                        child: Text(
+                          _isListening
+                              ? _partialText.isEmpty
+                                  ? t(context, 'voice.result.listening')
+                                  : _partialText
+                              : _recognizedText.isEmpty
+                                  ? t(context, 'voice.result.placeholder')
+                                  : _recognizedText,
+                          key: ValueKey(
+                              '$_isListening$_partialText$_recognizedText'),
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.white.withValues(
+                              alpha: (_recognizedText.isEmpty && !_isListening)
+                                  ? 0.5
+                                  : 0.9,
+                            ),
+                            fontStyle:
+                                (_recognizedText.isEmpty && !_isListening)
+                                    ? FontStyle.italic
+                                    : FontStyle.normal,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
                       ),
                     ),
                   ),
@@ -296,9 +369,45 @@ class _VoiceInputScreenState extends State<VoiceInputScreen>
 
               const Spacer(),
 
-              // Stop Button
+              // Action Buttons
               Padding(
-                padding: const EdgeInsets.all(24),
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: Row(
+                  children: [
+                    // Copy button
+                    Expanded(
+                      child: GlassButton(
+                        text: t(context, 'common.copy'),
+                        icon: Icons.copy,
+                        onPressed:
+                            _recognizedText.isNotEmpty ? _copyText : null,
+                        textColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(vertical: 14),
+                      ),
+                    ),
+                    const SizedBox(width: 16),
+                    // Use for translation button
+                    Expanded(
+                      flex: 2,
+                      child: GlassButton(
+                        text: t(context, 'voice.button.useText'),
+                        icon: Icons.translate,
+                        onPressed: _recognizedText.isNotEmpty
+                            ? _useForTranslation
+                            : null,
+                        textColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(vertical: 14),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              const SizedBox(height: 16),
+
+              // Main action button
+              Padding(
+                padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
                 child: SizedBox(
                   width: double.infinity,
                   child: GlassButton(
@@ -329,7 +438,7 @@ class _VoiceInputScreenState extends State<VoiceInputScreen>
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         border: Border.all(
-          color: Colors.white.withOpacity(opacity),
+          color: Colors.white.withValues(alpha: opacity),
           width: 2,
         ),
       ),

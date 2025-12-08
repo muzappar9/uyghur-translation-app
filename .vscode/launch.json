@@ -1,0 +1,46 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Flutter (Default - Android)",
+      "type": "dart",
+      "request": "launch",
+      "program": "lib/main.dart",
+      "console": "debugConsole",
+      "cwd": "${workspaceFolder}",
+      "args": [
+        "--dart-define=LOCALE=zh"
+      ]
+    },
+    {
+      "name": "Flutter (Android Emulator)",
+      "type": "dart",
+      "request": "launch",
+      "program": "lib/main.dart",
+      "console": "debugConsole",
+      "cwd": "${workspaceFolder}",
+      "deviceId": "emulator-5554",
+      "args": [
+        "--dart-define=LOCALE=zh"
+      ]
+    },
+    {
+      "name": "Flutter (Web - Chrome)",
+      "type": "dart",
+      "request": "launch",
+      "program": "lib/main.dart",
+      "console": "debugConsole",
+      "cwd": "${workspaceFolder}",
+      "deviceId": "chrome"
+    },
+    {
+      "name": "Flutter (Windows Desktop)",
+      "type": "dart",
+      "request": "launch",
+      "program": "lib/main.dart",
+      "console": "debugConsole",
+      "cwd": "${workspaceFolder}",
+      "deviceId": "windows"
+    }
+  ]
+}

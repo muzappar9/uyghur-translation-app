@@ -75,7 +75,7 @@ class _OcrResultScreenState extends State<OcrResultScreen> {
                     height: 200,
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(0.2),
+                      color: Colors.black.withValues(alpha: 0.2),
                       borderRadius: BorderRadius.circular(24),
                     ),
                     child: const Center(

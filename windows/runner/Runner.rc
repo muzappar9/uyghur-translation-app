@@ -89,13 +89,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "uyghur_translator" "\0"
+            VALUE "CompanyName", "Uyghur Translator" "\0"
+            VALUE "FileDescription", "维汉双语翻译应用" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
             VALUE "InternalName", "uyghur_translator" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2025 com.example. All rights reserved." "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2025 Uyghur Translator. All rights reserved." "\0"
             VALUE "OriginalFilename", "uyghur_translator.exe" "\0"
-            VALUE "ProductName", "uyghur_translator" "\0"
+            VALUE "ProductName", "维汉翻译" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

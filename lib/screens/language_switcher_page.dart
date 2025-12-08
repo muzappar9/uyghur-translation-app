@@ -1,25 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../widgets/glass_card.dart';
 import '../widgets/glass_button.dart';
 import '../i18n/localizations.dart';
-import '../main.dart';
+import '../shared/providers/app_providers.dart';
 
 /// LanguageSwitcherPage: 语言切换页
 /// 切换按钮 + 应用后rebuild App
-class LanguageSwitcherPage extends StatefulWidget {
+class LanguageSwitcherPage extends ConsumerStatefulWidget {
   const LanguageSwitcherPage({super.key});
 
   @override
-  State<LanguageSwitcherPage> createState() => _LanguageSwitcherPageState();
+  ConsumerState<LanguageSwitcherPage> createState() =>
+      _LanguageSwitcherPageState();
 }
 
-class _LanguageSwitcherPageState extends State<LanguageSwitcherPage> {
+class _LanguageSwitcherPageState extends ConsumerState<LanguageSwitcherPage> {
   String _selectedLanguage = 'zh';
 
   void _applyLanguage() {
-    final locale = Locale(_selectedLanguage);
-    // 触发App重建以实现RTL安全切换
-    UyghurTranslatorApp.setLocale(context, locale);
+    // 使用 Riverpod 更新语言状态
+    ref.read(appStateProvider.notifier).setLanguage(_selectedLanguage);
     Navigator.pop(context);
   }
 
@@ -135,11 +136,11 @@ class _LanguageOption extends StatelessWidget {
       blurSigma: 15,
       padding: const EdgeInsets.all(20),
       backgroundColor: isSelected
-          ? Colors.white.withOpacity(0.3)
-          : Colors.white.withOpacity(0.15),
+          ? Colors.white.withValues(alpha: 0.3)
+          : Colors.white.withValues(alpha: 0.15),
       border: isSelected
           ? Border.all(color: Colors.white, width: 2)
-          : Border.all(color: Colors.white.withOpacity(0.3)),
+          : Border.all(color: Colors.white.withValues(alpha: 0.3)),
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(24),
