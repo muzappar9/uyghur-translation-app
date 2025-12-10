@@ -42,9 +42,10 @@ class AnalyticsEvent {
 
   /// 转换为 AnalyticsEventModel 用于存储
   AnalyticsEventModel toModel() {
-    return AnalyticsEventModel(
+    return AnalyticsEventModel.create(
+      eventName: type.toString().split('.').last,
+      eventType: type.toString(),
       type: type.toString(),
-      timestamp: timestamp,
       metadata: metadataJson,
       userId: userId,
       sessionId: sessionId,
@@ -61,7 +62,7 @@ class AnalyticsEvent {
         orElse: () => EventType.translate,
       ),
       timestamp: model.timestamp,
-      metadataJson: model.metadata,
+      metadataJson: model.metadata ?? '{}',
       userId: model.userId,
       sessionId: model.sessionId,
       deviceInfo: model.deviceInfo,
@@ -303,7 +304,7 @@ class AnalyticsService {
       final isar = IsarDatabaseService.isar;
 
       final models = await isar.analyticsEventModels
-          .where()
+          .filter()
           .typeEqualTo(type.toString())
           .sortByTimestampDesc()
           .offset(offset)
@@ -333,7 +334,7 @@ class AnalyticsService {
       final isar = IsarDatabaseService.isar;
 
       final models = await isar.analyticsEventModels
-          .where()
+          .filter()
           .timestampBetween(startTime, endTime)
           .sortByTimestampDesc()
           .findAll();
@@ -454,7 +455,7 @@ class AnalyticsService {
       final isar = IsarDatabaseService.isar;
 
       final toDelete = await isar.analyticsEventModels
-          .where()
+          .filter()
           .timestampLessThan(olderThan)
           .findAll();
 

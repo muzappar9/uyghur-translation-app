@@ -43,7 +43,7 @@ class TranslationModel {
     return TranslationModel(
       id: isar.id,
       sourceText: isar.sourceText,
-      translatedText: isar.translatedText,
+      translatedText: isar.translatedText ?? isar.targetText,
       sourceLanguage: isar.sourceLanguage,
       targetLanguage: isar.targetLanguage,
       timestamp: isar.timestamp,

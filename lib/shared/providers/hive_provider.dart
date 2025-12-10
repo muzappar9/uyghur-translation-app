@@ -13,25 +13,29 @@ final hiveInitProvider = FutureProvider<void>((ref) async {
 });
 
 /// 翻译历史列表 Provider
-final translationHistoryListProvider = FutureProvider<List<Map<String, dynamic>>>((ref) async {
+final translationHistoryListProvider =
+    FutureProvider<List<Map<String, dynamic>>>((ref) async {
   await ref.watch(hiveDatabaseServiceProvider.future);
   return HiveDatabaseService.getAllTranslationHistory();
 });
 
-/// 收藏列表 Provider  
-final favoritesListProvider = FutureProvider<List<Map<String, dynamic>>>((ref) async {
+/// 收藏列表 Provider
+final favoritesListProvider =
+    FutureProvider<List<Map<String, dynamic>>>((ref) async {
   await ref.watch(hiveDatabaseServiceProvider.future);
   return HiveDatabaseService.getAllFavorites();
 });
 
 /// OCR 结果列表 Provider
-final ocrResultsListProvider = FutureProvider<List<Map<String, dynamic>>>((ref) async {
+final ocrResultsListProvider =
+    FutureProvider<List<Map<String, dynamic>>>((ref) async {
   await ref.watch(hiveDatabaseServiceProvider.future);
   return HiveDatabaseService.getAllOcrResults();
 });
 
 /// 用户偏好设置 Provider
-final userPreferencesDataProvider = FutureProvider<Map<String, dynamic>?>((ref) async {
+final userPreferencesDataProvider =
+    FutureProvider<Map<String, dynamic>?>((ref) async {
   await ref.watch(hiveDatabaseServiceProvider.future);
   return HiveDatabaseService.getUserPreferences();
 });

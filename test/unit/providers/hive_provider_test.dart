@@ -1,6 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hive/hive.dart';
 import 'package:uyghur_translator/shared/providers/hive_provider.dart';
 
 void main() {
@@ -30,32 +29,35 @@ void main() {
       );
     }, skip: 'Requires path_provider platform plugin');
 
-    test('userPreferencesBoxProvider 返回有效的Box', () async {
-      final box = await container.read(userPreferencesBoxProvider.future);
-      expect(box, isNotNull);
-      expect(box, isA<Box>());
+    test('hiveDatabaseServiceProvider 返回有效结果', () async {
+      await expectLater(
+        container.read(hiveDatabaseServiceProvider.future),
+        completes,
+      );
     }, skip: 'Requires path_provider platform plugin');
 
-    test('appConfigBoxProvider 返回有效的Box', () async {
-      final box = await container.read(appConfigBoxProvider.future);
-      expect(box, isNotNull);
-      expect(box, isA<Box>());
+    test('translationHistoryListProvider 返回有效列表', () async {
+      final history =
+          await container.read(translationHistoryListProvider.future);
+      expect(history, isNotNull);
+      expect(history, isA<List<Map<String, dynamic>>>());
     }, skip: 'Requires path_provider platform plugin');
 
-    test('cacheBoxProvider 返回有效的Box', () async {
-      final box = await container.read(cacheBoxProvider.future);
-      expect(box, isNotNull);
-      expect(box, isA<Box>());
+    test('favoritesListProvider 返回有效列表', () async {
+      final favorites = await container.read(favoritesListProvider.future);
+      expect(favorites, isNotNull);
+      expect(favorites, isA<List<Map<String, dynamic>>>());
     }, skip: 'Requires path_provider platform plugin');
 
-    test('多个Box可以独立访问', () async {
-      final prefs = await container.read(userPreferencesBoxProvider.future);
-      final config = await container.read(appConfigBoxProvider.future);
-      final cache = await container.read(cacheBoxProvider.future);
+    test('多个Provider可以独立访问', () async {
+      final history =
+          await container.read(translationHistoryListProvider.future);
+      final favorites = await container.read(favoritesListProvider.future);
+      final ocr = await container.read(ocrResultsListProvider.future);
 
-      expect(prefs, isNotNull);
-      expect(config, isNotNull);
-      expect(cache, isNotNull);
+      expect(history, isNotNull);
+      expect(favorites, isNotNull);
+      expect(ocr, isNotNull);
     }, skip: 'Requires path_provider platform plugin');
 
     test('hiveInitProvider 返回Future<void>', () async {

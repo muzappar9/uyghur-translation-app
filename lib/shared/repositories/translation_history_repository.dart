@@ -35,13 +35,13 @@ class TranslationHistoryRepository {
       _logger.i(
           '[TranslationHistory] Saving translation: $sourceText → $translatedText');
 
-      final model = TranslationHistoryModel(
+      final model = TranslationHistoryModel.create(
         sourceText: sourceText,
+        targetText: translatedText,
         translatedText: translatedText,
         sourceLanguage: sourceLanguage,
         targetLanguage: targetLanguage,
         sourceType: sourceType,
-        timestamp: DateTime.now(),
       );
 
       final isar = IsarDatabaseService.isar;
@@ -98,10 +98,9 @@ class TranslationHistoryRepository {
     try {
       final isar = IsarDatabaseService.isar;
 
-      // 因为sourceLanguage和targetLanguage都是索引字段
-      // 我们先按sourceLanguage查询，然后在客户端过滤targetLanguage
+      // 使用 filter 而不是 where，因为没有索引
       final results = await isar.translationHistoryModels
-          .where()
+          .filter()
           .sourceLanguageEqualTo(sourceLanguage)
           .sortByTimestampDesc()
           .limit(limit)
@@ -133,11 +132,10 @@ class TranslationHistoryRepository {
       final isar = IsarDatabaseService.isar;
 
       final results = await isar.translationHistoryModels
-          .where()
+          .filter()
           .sourceTypeEqualTo(sourceType)
           .sortByTimestampDesc()
           .limit(limit)
-          .build()
           .findAll();
 
       _logger.d(
@@ -168,14 +166,13 @@ class TranslationHistoryRepository {
       final results = await isar.translationHistoryModels
           .where()
           .sortByTimestampDesc()
-          .build()
           .findAll();
 
       // 在客户端进行过滤（如需要服务器端全文搜索，可后续优化）
       final filtered = results
           .where((t) =>
               t.sourceText.toLowerCase().contains(lowerQuery) ||
-              t.translatedText.toLowerCase().contains(lowerQuery))
+              (t.translatedText?.toLowerCase().contains(lowerQuery) ?? false))
           .take(limit)
           .toList();
 
@@ -200,14 +197,14 @@ class TranslationHistoryRepository {
           .where()
           .sortByTimestampDesc()
           .limit(100000) // 设置一个很大的limit，实际不会用到
-          .build()
           .findAll();
       final total = allTranslations.length;
 
       // 按来源类型统计
       final typeStats = <String, int>{};
       for (final t in allTranslations) {
-        typeStats[t.sourceType] = (typeStats[t.sourceType] ?? 0) + 1;
+        final sourceType = t.sourceType ?? 'unknown';
+        typeStats[sourceType] = (typeStats[sourceType] ?? 0) + 1;
       }
 
       // 按语言对统计

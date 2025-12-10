@@ -43,14 +43,17 @@ class FavoriteItem {
 
   /// 转换为 FavoriteItemModel 用于存储
   FavoriteItemModel toModel() {
-    return FavoriteItemModel(
+    return FavoriteItemModel.create(
       type: type.toString(),
       title: title,
       sourceText: sourceText,
+      targetText: translatedText,
       translatedText: translatedText,
+      sourceLanguage: sourceLang,
+      targetLanguage: targetLang,
       sourceLang: sourceLang,
       targetLang: targetLang,
-      tags: tags,
+      tags: tags?.split(',').where((t) => t.isNotEmpty).toList(),
       notes: notes,
       createdAt: createdAt,
       lastAccessedAt: lastAccessedAt,
@@ -66,14 +69,14 @@ class FavoriteItem {
         (e) => e.toString() == model.type,
         orElse: () => FavoriteItemType.translation,
       ),
-      title: model.title,
+      title: model.title ?? '',
       sourceText: model.sourceText,
-      translatedText: model.translatedText,
-      sourceLang: model.sourceLang,
-      targetLang: model.targetLang,
-      tags: model.tags,
+      translatedText: model.translatedText ?? model.targetText,
+      sourceLang: model.sourceLang ?? model.sourceLanguage,
+      targetLang: model.targetLang ?? model.targetLanguage,
+      tags: model.tags?.join(','),
       notes: model.notes,
-      createdAt: model.createdAt,
+      createdAt: model.createdAt ?? model.addedAt,
       lastAccessedAt: model.lastAccessedAt,
       accessCount: model.accessCount,
     );
@@ -232,7 +235,7 @@ class FavoritesManager {
       final isar = IsarDatabaseService.isar;
 
       final models = await isar.favoriteItemModels
-          .where()
+          .filter()
           .typeEqualTo(type.toString())
           .sortByCreatedAtDesc()
           .offset(offset)
@@ -266,9 +269,9 @@ class FavoritesManager {
       final isar = IsarDatabaseService.isar;
 
       final models = await isar.favoriteItemModels
-          .where()
-          .sourceLangEqualTo(sourceLang)
           .filter()
+          .sourceLangEqualTo(sourceLang)
+          .and()
           .targetLangEqualTo(targetLang)
           .sortByCreatedAtDesc()
           .offset(offset)
@@ -337,9 +340,9 @@ class FavoritesManager {
 
       final filtered = allModels
           .where((m) =>
-              m.title.toLowerCase().contains(lowerQuery) ||
+              (m.title?.toLowerCase().contains(lowerQuery) ?? false) ||
               m.sourceText.toLowerCase().contains(lowerQuery) ||
-              m.translatedText.toLowerCase().contains(lowerQuery))
+              (m.translatedText?.toLowerCase().contains(lowerQuery) ?? false))
           .skip(offset)
           .take(limit)
           .toList();
@@ -397,10 +400,10 @@ class FavoritesManager {
         return;
       }
 
-      final tags = model.tags?.split(',') ?? [];
+      final tags = model.tags ?? [];
       if (!tags.contains(tag)) {
         tags.add(tag);
-        model.tags = tags.join(',');
+        model.tags = tags;
 
         await isar.writeTxn(() async {
           await isar.favoriteItemModels.put(model);
@@ -429,9 +432,9 @@ class FavoritesManager {
         return;
       }
 
-      final tags = model.tags?.split(',') ?? [];
+      final tags = model.tags ?? [];
       tags.removeWhere((t) => t == tag);
-      model.tags = tags.isNotEmpty ? tags.join(',') : null;
+      model.tags = tags.isNotEmpty ? tags : null;
 
       await isar.writeTxn(() async {
         await isar.favoriteItemModels.put(model);
@@ -536,7 +539,7 @@ class FavoritesManager {
 
       for (final model in models) {
         if (model.tags != null) {
-          final tags = model.tags!.split(',');
+          final tags = model.tags!;
           for (final tag in tags) {
             tagMap[tag] = (tagMap[tag] ?? 0) + 1;
           }

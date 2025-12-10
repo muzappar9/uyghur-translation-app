@@ -36,7 +36,12 @@ class PendingSyncItem {
 
   /// 转换为 PendingSyncModel 用于存储
   PendingSyncModel toModel() {
-    return PendingSyncModel(
+    return PendingSyncModel.create(
+      entityType: type.toString(),
+      entityId:
+          id?.toString() ?? DateTime.now().millisecondsSinceEpoch.toString(),
+      action: 'create',
+      jsonData: dataJson,
       type: type.toString(),
       data: dataJson,
       createdAt: createdAt,
@@ -53,8 +58,8 @@ class PendingSyncItem {
         (e) => e.toString() == model.type,
         orElse: () => SyncOperationType.translation,
       ),
-      dataJson: model.data,
-      createdAt: model.createdAt,
+      dataJson: model.data ?? model.jsonData,
+      createdAt: model.createdAt ?? model.timestamp,
       retryCount: model.retryCount,
       isCompleted: model.isCompleted,
     );
@@ -122,9 +127,9 @@ class PendingSyncQueue {
       final isar = IsarDatabaseService.isar;
 
       final models = await isar.pendingSyncModels
-          .where()
+          .filter()
           .isCompletedEqualTo(false)
-          .sortByCreatedAt()
+          .sortByTimestamp()
           .findAll();
 
       final items = models.map((m) => PendingSyncItem.fromModel(m)).toList();
@@ -146,11 +151,11 @@ class PendingSyncQueue {
       final isar = IsarDatabaseService.isar;
 
       final models = await isar.pendingSyncModels
-          .where()
-          .isCompletedEqualTo(false)
           .filter()
+          .isCompletedEqualTo(false)
+          .and()
           .typeEqualTo(type.toString())
-          .sortByCreatedAt()
+          .sortByTimestamp()
           .findAll();
 
       final items = models.map((m) => PendingSyncItem.fromModel(m)).toList();
@@ -255,7 +260,7 @@ class PendingSyncQueue {
       final isar = IsarDatabaseService.isar;
 
       final toDelete = await isar.pendingSyncModels
-          .where()
+          .filter()
           .isCompletedEqualTo(true)
           .findAll();
 
@@ -297,7 +302,7 @@ class PendingSyncQueue {
     try {
       final isar = IsarDatabaseService.isar;
       final count = await isar.pendingSyncModels
-          .where()
+          .filter()
           .isCompletedEqualTo(false)
           .count();
       return count;
@@ -311,8 +316,10 @@ class PendingSyncQueue {
   Future<int> getCompletedCount() async {
     try {
       final isar = IsarDatabaseService.isar;
-      final count =
-          await isar.pendingSyncModels.where().isCompletedEqualTo(true).count();
+      final count = await isar.pendingSyncModels
+          .filter()
+          .isCompletedEqualTo(true)
+          .count();
       return count;
     } catch (e) {
       _logger.e('[PendingSync] Error getting completed count: $e');

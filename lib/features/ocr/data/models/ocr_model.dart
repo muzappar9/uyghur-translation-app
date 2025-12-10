@@ -50,11 +50,11 @@ class OcrModel {
   factory OcrModel.fromIsar(OcrResultModel isar) {
     return OcrModel(
       id: isar.id,
-      imageUrl: isar.imageUrl,
+      imageUrl: isar.imageUrl ?? isar.imagePath,
       recognizedText: isar.recognizedText,
-      detectedLanguage: isar.detectedLanguage,
-      editHistory: isar.editHistory,
-      createdAt: isar.createdAt,
+      detectedLanguage: isar.detectedLanguage ?? isar.language,
+      editHistory: isar.editHistory ?? [],
+      createdAt: isar.createdAt ?? isar.timestamp,
       lastModified: isar.lastModified,
       userId: isar.userId,
       isFavorite: isar.isFavorite,

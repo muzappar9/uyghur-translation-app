@@ -36,13 +36,13 @@ class OcrRepositoryImpl implements OcrRepository {
       final visionResult = await _googleVisionService.recognizeText(imageFile);
 
       // 保存到本地数据库
-      final ocrRecord = OcrResultModel(
-        imageUrl: imageFile.path,
+      final ocrRecord = OcrResultModel.create(
+        imagePath: imageFile.path,
         recognizedText: visionResult.text,
+        language: visionResult.detectedLanguage,
+        imageUrl: imageFile.path,
         detectedLanguage: visionResult.detectedLanguage,
-        createdAt: DateTime.now(),
         isFavorite: false,
-        isSynced: _isOnline,
       );
 
       await IsarDatabaseService.saveOcrResult(ocrRecord);
@@ -158,22 +158,14 @@ class OcrRepositoryImpl implements OcrRepository {
       final original = results[targetIndex];
 
       // 更新编辑历史
-      final editHistory = [...original.editHistory, editedText];
+      final editHistory = [...(original.editHistory ?? []), editedText];
 
-      // 创建更新后的记录
-      final updated = OcrResultModel(
-        imageUrl: original.imageUrl,
-        recognizedText: editedText,
-        detectedLanguage: original.detectedLanguage,
-        editHistory: editHistory,
-        createdAt: original.createdAt,
-        lastModified: DateTime.now(),
-        userId: original.userId,
-        isFavorite: original.isFavorite,
-        isSynced: original.isSynced,
-      );
+      // 更新原始记录
+      original.recognizedText = editedText;
+      original.editHistory = editHistory;
+      original.lastModified = DateTime.now();
 
-      await IsarDatabaseService.saveOcrResult(updated);
+      await IsarDatabaseService.saveOcrResult(original);
       appLogger.i('✅ OCR 记录已更新: $id');
       return true;
     } catch (e) {
@@ -195,21 +187,12 @@ class OcrRepositoryImpl implements OcrRepository {
 
       final original = results[targetIndex];
 
-      // 反转收藏状态
-      final updated = OcrResultModel(
-        imageUrl: original.imageUrl,
-        recognizedText: original.recognizedText,
-        detectedLanguage: original.detectedLanguage,
-        editHistory: original.editHistory,
-        createdAt: original.createdAt,
-        lastModified: DateTime.now(),
-        userId: original.userId,
-        isFavorite: !original.isFavorite,
-        isSynced: original.isSynced,
-      );
+      // 反转收藏状态 - 直接修改原对象
+      original.isFavorite = !original.isFavorite;
+      original.lastModified = DateTime.now();
 
-      await IsarDatabaseService.saveOcrResult(updated);
-      appLogger.i('${updated.isFavorite ? '❤️' : '🤍'} 收藏状态已更新: $id');
+      await IsarDatabaseService.saveOcrResult(original);
+      appLogger.i('${original.isFavorite ? '❤️' : '🤍'} 收藏状态已更新: $id');
       return true;
     } catch (e) {
       appLogger.e('❌ 更新收藏状态失败: $e');

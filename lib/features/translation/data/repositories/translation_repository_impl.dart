@@ -87,13 +87,13 @@ class TranslationRepositoryImpl implements TranslationRepository {
       );
 
       // 保存到本地数据库
-      final history = TranslationHistoryModel(
+      final history = TranslationHistoryModel.create(
         sourceText: text,
+        targetText: translatedText,
         translatedText: translatedText,
         sourceLanguage: sourceLanguage,
         targetLanguage: targetLanguage,
-        timestamp: DateTime.now(),
-        isSynced: true, // API 翻译已同步
+        isFavorite: false,
       );
 
       await IsarDatabaseService.saveTranslationHistory(history);
@@ -140,7 +140,7 @@ class TranslationRepositoryImpl implements TranslationRepository {
         if (history.sourceText.toLowerCase() == text.toLowerCase()) {
           appLogger.i('✅ 离线模式使用缓存翻译');
           return TranslationResult.success(
-            translatedText: history.translatedText,
+            translatedText: history.translatedText ?? history.targetText,
             sourceLanguage: sourceLanguage,
             targetLanguage: targetLanguage,
           );
