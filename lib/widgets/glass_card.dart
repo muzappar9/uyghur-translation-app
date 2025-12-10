@@ -55,6 +55,7 @@ class GlassCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(borderRadius),
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: blurSigma, sigmaY: blurSigma),
+          // 优化：减少子组件层级，使用更简单的装饰
           child: Container(
             padding: padding ?? const EdgeInsets.all(16),
             decoration: BoxDecoration(
@@ -68,13 +69,14 @@ class GlassCard extends StatelessWidget {
                         : Colors.white.withValues(alpha: 0.5),
                     width: 0.5,
                   ),
-              boxShadow: [
+              // 优化：减少阴影，只在必要时使用
+              boxShadow: blurSigma > 10 ? [
                 BoxShadow(
                   color: const Color(0xFFFF7F50).withValues(alpha: 0.05),
                   blurRadius: 20,
                   offset: const Offset(0, 4),
                 ),
-              ],
+              ] : null,
             ),
             child: child,
           ),

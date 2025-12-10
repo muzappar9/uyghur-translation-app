@@ -11,6 +11,10 @@ import 'package:uyghur_translator/core/utils/app_logger.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  // 启用性能监控
+  PerformanceMonitor().setEnabled(true);
+  PerformanceMonitor().startFrameMonitoring();
+
   // 加载环境变量配置
   await dotenv.load(fileName: '.env');
 

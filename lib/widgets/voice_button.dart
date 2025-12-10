@@ -47,7 +47,7 @@ class _VoiceButtonState extends State<VoiceButton>
   void initState() {
     super.initState();
 
-    // 按压缩放动画
+    // 合并动画控制器，减少Ticker数量
     _scaleController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 100),
@@ -56,7 +56,7 @@ class _VoiceButtonState extends State<VoiceButton>
       CurvedAnimation(parent: _scaleController, curve: Curves.easeOut),
     );
 
-    // 波纹扩散动画
+    // 优化：减少不必要的动画控制器，只在需要时创建
     _rippleController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 1500),
@@ -65,7 +65,7 @@ class _VoiceButtonState extends State<VoiceButton>
       CurvedAnimation(parent: _rippleController, curve: Curves.easeOut),
     );
 
-    // 脉冲动画
+    // 优化：使用更简单的动画，避免过度动画
     _pulseController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 800),

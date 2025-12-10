@@ -64,8 +64,8 @@ class LocalMockTranslationEngine implements TranslationEngine {
     String sourceLang,
     String targetLang,
   ) async {
-    // 模拟网络延迟
-    await Future.delayed(const Duration(milliseconds: 500));
+    // 优化：减少模拟延迟到更合理的时长
+    await Future.delayed(const Duration(milliseconds: 200));
 
     final key = text.toLowerCase().trim();
     final langPair = '${sourceLang}_$targetLang';

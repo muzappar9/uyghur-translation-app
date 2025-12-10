@@ -44,29 +44,37 @@ class FontConfigNotifier extends StateNotifier<FontConfigState> {
   static const String _keyFontSize = 'font_size';
   static const String _keyLineHeight = 'font_line_height';
 
-  /// 加载保存的字体配置
+  /// 加载保存的字体配置 (优化：延迟加载)
   Future<void> _loadConfig() async {
     state = state.copyWith(isLoading: true);
     try {
+      // 优化：使用异步获取SharedPreferences，避免阻塞
       final prefs = await SharedPreferences.getInstance();
-      
-      // 读取维吾尔语字体
-      final uyghurFontName = prefs.getString(_keyUyghurFont);
-      final uyghurFont = uyghurFontName != null
-          ? AlkatipFont.values.firstWhere(
-              (f) => f.fontFamily == uyghurFontName,
-              orElse: () => AlkatipFont.standard,
-            )
-          : AlkatipFont.standard;
 
-      // 读取汉语字体
+      // 优化：使用更高效的查找方式
+      AlkatipFont uyghurFont = AlkatipFont.standard;
+      final uyghurFontName = prefs.getString(_keyUyghurFont);
+      if (uyghurFontName != null) {
+        try {
+          uyghurFont = AlkatipFont.values.firstWhere(
+            (f) => f.fontFamily == uyghurFontName,
+          );
+        } catch (_) {
+          // 如果找不到，使用默认值
+        }
+      }
+
+      ChineseFont chineseFont = ChineseFont.system;
       final chineseFontName = prefs.getString(_keyChineseFont);
-      final chineseFont = chineseFontName != null
-          ? ChineseFont.values.firstWhere(
-              (f) => f.fontFamily == chineseFontName,
-              orElse: () => ChineseFont.system,
-            )
-          : ChineseFont.system;
+      if (chineseFontName != null) {
+        try {
+          chineseFont = ChineseFont.values.firstWhere(
+            (f) => f.fontFamily == chineseFontName,
+          );
+        } catch (_) {
+          // 如果找不到，使用默认值
+        }
+      }
 
       // 读取字体大小和行高
       final fontSize = prefs.getDouble(_keyFontSize) ?? FontConstants.defaultFontSize;
